@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages Directory | GhostedArch</title>
+    <meta name="description"
+        content="Complete packages catalog and database index for the GhostedArch Linux distribution.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="navbar" style="background: rgba(10, 13, 18, 0.85); backdrop-filter: blur(16px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="logo.svg" alt="Ghosted Arch Logo" class="nav-logo-img">
+                <div class="logo">Ghosted<span>Arch</span></div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="magnetic" data-strength="20"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="index.html#features" class="magnetic" data-strength="20">Features</a>
+                <a href="index.html#apps" class="magnetic" data-strength="20">Apps</a>
+                <a href="index.html#download" class="btn-outline magnetic" data-strength="30">Download</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section database-section">
+        <div class="database-container">
+            <div class="table-header-bar">
+                <div class="table-header-title">
+                    <h2>Package Database</h2>
+                    <p>Complete official packages and system tools list for GhostedArch.</p>
+                </div>
+                <div class="search-input-wrapper">
+                    <input type="text" id="search-input" placeholder="Search packages directory..." onkeyup="filterTable()">
+                </div>
+            </div>
+
+            <!-- Packages Table Grid -->
+            <div class="table-container glass-panel">
+                <table class="packages-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Package Name</th>
+                            <th style="width: 15%;">Version</th>
+                            <th style="width: 45%;">Description</th>
+                            <th style="width: 10%;">License</th>
+                            <th style="width: 10%; text-align: right;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="packages-table-body">
+                        <!-- Loaded dynamically -->
+                        <tr class="loading-row">
+                            <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 50px;">
+                                <div class="spinner" style="margin: 0 auto 15px;"></div>
+                                Loading package metadata catalog...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Ghosted Arch OS. Crafted with precision.</p>
+    </footer>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Packages List Logic -->
+    <script src="packages-list.js"></script>
+</body>
+
+</html>
