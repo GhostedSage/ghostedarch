@@ -1001,7 +1001,7 @@ footer {
    PACKAGES DATABASE TABLE STYLING (HIGH-DENSITY DIRECTORY VIEW)
    ========================================================================== */
 .database-section {
-    padding: 150px 0 80px;
+    padding: 220px 0 80px;
     min-height: 85vh;
     animation: fadeIn 0.8s ease-out;
 }
@@ -1076,6 +1076,7 @@ footer {
     color: var(--accent-primary);
     font-family: var(--font-heading);
     font-size: 1.1rem;
+    white-space: nowrap;
 }
 
 .pkg-version-cell {
