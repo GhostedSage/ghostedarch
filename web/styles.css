@@ -6,6 +6,7 @@
     --text-main: #ffffff;
     --text-muted: #a0aec0;
     --glass-border: rgba(255, 255, 255, 0.1);
+    --text-gradient-linear: linear-gradient(90deg, #ffffff, var(--accent-primary));
     
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -1001,7 +1002,7 @@ footer {
    PACKAGES DATABASE TABLE STYLING (HIGH-DENSITY DIRECTORY VIEW)
    ========================================================================== */
 .database-section {
-    padding: 220px 0 80px;
+    padding: 160px 0 80px;
     min-height: 85vh;
     animation: fadeIn 0.8s ease-out;
 }
@@ -1015,7 +1016,7 @@ footer {
 .table-header-bar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 45px;
     flex-wrap: wrap;
     gap: 20px;
@@ -1051,6 +1052,16 @@ footer {
 .packages-table th, .packages-table td {
     padding: 20px 24px;
     border-bottom: 1px solid var(--glass-border);
+}
+
+.packages-table th:first-child,
+.packages-table td:first-child {
+    padding-left: 32px;
+}
+
+.packages-table th:last-child,
+.packages-table td:last-child {
+    padding-right: 32px;
 }
 
 .packages-table th {

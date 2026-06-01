@@ -165,13 +165,14 @@ function renderTable(items) {
     tbody.appendChild(row);
   });
   
-  // Stagger reveal rows using GSAP
+  // Stagger reveal rows using GSAP with vertical translation and clearProps to avoid horizontal clipping layout bugs
   gsap.from(".package-row", {
     opacity: 0,
-    x: -30,
+    y: 20,
     duration: 0.6,
     stagger: 0.05,
     ease: "power3.out",
+    clearProps: "all",
     overwrite: "auto"
   });
 }
