@@ -68,6 +68,28 @@ function switchSetupTab(event, tabId) {
   event.currentTarget.classList.add("active");
 }
 
+// Copy Pacman Config Snippet
+function copyPacmanConfig() {
+  const codeText = document.getElementById("pacman-config-text").innerText;
+  
+  navigator.clipboard.writeText(codeText).then(() => {
+    const copyBtn = document.querySelector(".terminal-copy-btn");
+    const originalText = copyBtn.innerText;
+    
+    copyBtn.innerText = "Copied!";
+    copyBtn.style.background = "var(--accent-primary)";
+    copyBtn.style.color = "#000";
+    
+    setTimeout(() => {
+      copyBtn.innerText = originalText;
+      copyBtn.style.background = "rgba(79, 209, 197, 0.1)";
+      copyBtn.style.color = "var(--accent-primary)";
+    }, 2000);
+  }).catch(err => {
+    console.error("Failed to copy pacman config: ", err);
+  });
+}
+
 // Copy Code to Clipboard
 function copyText(codeId, iconId) {
   const codeText = document.getElementById(codeId).innerText;

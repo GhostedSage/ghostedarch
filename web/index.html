@@ -1,196 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GhostedArch Linux Packages Repository</title>
-  <meta name="description" content="Official package repository and configuration dashboard for the GhostedArch custom Linux distribution.">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  
-  <!-- Styling -->
-  <link rel="stylesheet" href="style.css">
-  
-  <!-- Icons (FontAwesome) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-  
-  <!-- Background Ambient Glows -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-  
-  <!-- Navigation Header -->
-  <header class="navbar">
-    <div class="nav-container">
-      <div class="brand">
-        <div class="brand-logo">
-          <i class="fa-solid fa-ghost logo-icon"></i>
-        </div>
-        <div class="brand-text">
-          <h1>Ghosted<span>Arch</span></h1>
-          <p>Package Repository</p>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="#setup" class="nav-link"><i class="fa-solid fa-terminal"></i> Setup Guide</a>
-        <a href="#packages" class="nav-link"><i class="fa-solid fa-box-open"></i> Browse Packages</a>
-        <a href="https://github.com/GhostedSage/ghostedarch" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> GitHub</a>
-      </nav>
-    </div>
-  </header>
 
-  <main class="main-content">
-    
-    <!-- Hero / Console Section -->
-    <section class="hero-section">
-      <div class="hero-grid">
-        <div class="hero-showcase">
-          <div class="artwork-card">
-            <div class="artwork-header">
-              <div class="terminal-dot red"></div>
-              <div class="terminal-dot yellow"></div>
-              <div class="terminal-dot green"></div>
-              <span class="artwork-title">ghostedarch-wallpaper.png</span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghosted Arch | The Cinematic OS</title>
+    <meta name="description"
+        content="Experience the ultimate dark, glassmorphic, and highly customized Arch Linux operating system.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Cinematic Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo-wrapper">
+                <img src="logo.svg" alt="Ghosted Arch Logo" class="preloader-logo-img">
+                <div class="preloader-logo">Ghosted<span>Arch</span></div>
             </div>
-            <div class="artwork-preview">
-              <img src="wallpaper.png" alt="GhostedArch Official Wallpaper" id="distro-wallpaper">
-              <div class="preview-overlay">
-                <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Generated OS Branding</span>
-              </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
-          </div>
         </div>
-        
-        <div class="hero-info">
-          <h2 class="section-title">The Ghostly Core of a Customized Distro</h2>
-          <p class="section-desc">
-            Welcome to the official repository for <strong>GhostedArch Linux</strong>. 
-            This portal hosts custom-crafted packages, system configurations, themes, GPG trust keyrings, and neofetch configurations designed to give your Arch installation a high-end, futuristic cyberpunk visual overhaul.
-          </p>
-          <div class="hero-stats">
-            <div class="stat-card" id="stat-count-card">
-              <span class="stat-num" id="stat-pkg-count">4</span>
-              <span class="stat-label">Verified Packages</span>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <img src="logo.svg" alt="Ghosted Arch Logo" class="nav-logo-img">
+                <div class="logo">Ghosted<span>Arch</span></div>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="magnetic" data-strength="20">Features</a>
+                <a href="#apps" class="magnetic" data-strength="20">Apps</a>
+                <a href="#packages" class="magnetic" data-strength="20">Packages</a>
+                <a href="#specs" class="magnetic" data-strength="20">Specs</a>
+                <a href="#download" class="btn-outline magnetic" data-strength="30">Download</a>
             </div>
-            <div class="stat-card">
-              <span class="stat-num">x86_64</span>
-              <span class="stat-label">Architecture</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-num"><i class="fa-solid fa-bolt"></i></span>
-              <span class="stat-label">CI/CD Automated</span>
-            </div>
-          </div>
         </div>
-      </div>
+    </nav>
+
+    <header class="hero" id="hero">
+        <div class="hero-bg" style="background-image: url('swappy-20260505_231843.png');"></div>
+        <div class="hero-mist"></div>
+        <div class="hero-mist hero-mist-2"></div>
+        <div class="hero-content">
+            <!-- Text split dynamically by JS -->
+            <h1 class="hero-title">Enter the Mist.</h1>
+            <p class="hero-subtitle">A stunning, perfectly tuned Arch Linux experience with a deeply immersive dark
+                aesthetic.</p>
+            <div class="hero-cta">
+                <a href="#features" class="btn-primary magnetic" data-strength="40">Explore Features</a>
+                <a href="#specs" class="btn-secondary magnetic" data-strength="40">View Specs</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-header reveal-text">
+                <h2>Designed to Perform. Built to Inspire.</h2>
+                <p>Every pixel of Ghosted Arch is meticulously crafted with modern glassmorphism and dynamic
+                    micro-animations.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card glass-panel" id="card-launcher">
+                    <div class="img-wrapper">
+                        <img src="swappy-20260505_232106.png" alt="Ghosted Arch App Launcher" class="feature-img">
+                    </div>
+                    <div class="feature-info">
+                        <h3>Immersive App Launcher</h3>
+                        <p>A full-screen, blazingly fast glassmorphic application launcher that puts everything you need
+                            at your fingertips.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card glass-panel" id="card-power">
+                    <div class="img-wrapper">
+                        <img src="swappy-20260505_232056.png" alt="Ghosted Arch Power Menu" class="feature-img">
+                    </div>
+                    <div class="feature-info">
+                        <h3>Elegant Controls</h3>
+                        <p>Beautiful overlay menus for power management that seamlessly blend with your misty desktop
+                            background.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Installation & Setup Guide Section -->
-    <section id="setup" class="setup-section">
-      <div class="card-header-bar">
-        <h2><i class="fa-solid fa-terminal text-gradient"></i> Distro Repository Integration</h2>
-        <span class="sub-label">Add GhostedArch packages directly to any Arch Linux installation</span>
-      </div>
-      
-      <div class="setup-tabs-container">
-        <!-- Tabs Buttons -->
-        <div class="setup-tabs">
-          <button class="tab-btn active" onclick="switchSetupTab(event, 'tab-pacman')" id="tab-pacman-btn">
-            <i class="fa-solid fa-gears"></i> 1. pacman.conf Setup
-          </button>
-          <button class="tab-btn" onclick="switchSetupTab(event, 'tab-keyring')" id="tab-keyring-btn">
-            <i class="fa-solid fa-key"></i> 2. Install Keyring
-          </button>
-        </div>
-        
-        <!-- Tab Content: pacman.conf -->
-        <div class="tab-content active" id="tab-pacman">
-          <p class="tab-desc">Edit your <code>/etc/pacman.conf</code> file and add the custom repository definition to the bottom of the file.</p>
-          <div class="code-terminal">
-            <div class="terminal-bar">
-              <span class="terminal-filepath">/etc/pacman.conf</span>
-              <button class="copy-btn" onclick="copyText('pacman-conf-code', 'copy-pacman-icon')" id="copy-pacman-btn">
-                <i class="fa-regular fa-copy" id="copy-pacman-icon"></i> Copy Code
-              </button>
+    <section class="section apps" id="apps">
+        <div class="container">
+            <div class="section-header reveal-text">
+                <h2>A First-Class Ecosystem.</h2>
+                <p>Ghosted Arch comes pre-equipped with custom-built applications that seamlessly integrate with the
+                    system's misty aesthetic.</p>
             </div>
-            <pre><code id="pacman-conf-code">[ghostedarch]
+
+            <div class="app-showcase">
+                <div class="app-block glass-panel">
+                    <div class="app-content">
+                        <h3>Ghosted Notes</h3>
+                        <p>A beautifully simple, markdown-powered note-taking experience with an immersive mind-map view
+                            to connect your thoughts dynamically.</p>
+                        <div class="app-tags">
+                            <span class="tag">Markdown</span>
+                            <span class="tag">Mind Map</span>
+                        </div>
+                    </div>
+                    <div class="app-images">
+                        <img src="ghostednotes.png" alt="Ghosted Notes Interface" class="app-img primary-img">
+                        <img src="notemindmap.png" alt="Ghosted Notes Mind Map"
+                            class="app-img secondary-img float-anim">
+                    </div>
+                </div>
+
+                <div class="app-block glass-panel reverse">
+                    <div class="app-content">
+                        <h3>Tux Warden</h3>
+                        <p>The ultimate shield for Ghosted Arch. Advanced threat protection and system security tailored
+                            specifically for your Linux environment, defending your system in real-time.</p>
+                        <div class="app-tags">
+                            <span class="tag">System Defender</span>
+                            <span class="tag">Real-time Protection</span>
+                        </div>
+                    </div>
+                    <div class="app-images">
+                        <img src="tuxwardedhome.png" alt="Tux Warden Home" class="app-img primary-img">
+                        <img src="tuxwarden.svg" alt="Tux Warden Login"
+                            class="app-img secondary-img float-anim-delayed">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section packages" id="packages">
+        <div class="container">
+            <div class="section-header reveal-text">
+                <h2>Custom Packages Registry</h2>
+                <p>Meticulously tuned custom configurations and branding assets compiled natively for your Arch installation.</p>
+            </div>
+
+            <!-- Pacman Repository Integration Terminal -->
+            <div class="packages-integration glass-panel">
+                <div class="integration-header">
+                    <span class="terminal-title"><i class="fa-solid fa-terminal"></i> Repository Setup Guide</span>
+                </div>
+                <div class="integration-body">
+                    <p class="integration-desc">Add the GhostedArch online repository to your system to install customized packages directly via Pacman:</p>
+                    <div class="setup-terminal">
+                        <div class="terminal-bar">
+                            <span class="terminal-path">/etc/pacman.conf</span>
+                            <button class="terminal-copy-btn" onclick="copyPacmanConfig()">Copy Snippet</button>
+                        </div>
+                        <pre><code id="pacman-config-text">[ghostedarch]
 SigLevel = Optional TrustAll
 Server = https://ghostedsage.github.io/ghostedarch/repo/x86_64</code></pre>
-          </div>
-          <div class="alert-info">
-            <i class="fa-solid fa-circle-info"></i>
-            <p><strong>Note:</strong> We set <code>SigLevel = Optional TrustAll</code> to allow importing the keyring package securely without a pre-existing trusted signature.</p>
-          </div>
-        </div>
-        
-        <!-- Tab Content: Keyring -->
-        <div class="tab-content" id="tab-keyring">
-          <p class="tab-desc">Run these commands in your terminal to synchronize the databases and install the official GhostedArch signing keyring, which enables cryptographically secure package signatures.</p>
-          <div class="code-terminal">
-            <div class="terminal-bar">
-              <span class="terminal-filepath">Terminal (bash)</span>
-              <button class="copy-btn" onclick="copyText('keyring-setup-code', 'copy-keyring-icon')" id="copy-keyring-btn">
-                <i class="fa-regular fa-copy" id="copy-keyring-icon"></i> Copy Commands
-              </button>
+                    </div>
+                </div>
             </div>
-            <pre><code id="keyring-setup-code"># Sync repositories and install keyrings
-sudo pacman -Sy
-sudo pacman -S ghostedarch-keyring
 
-# (Optional) Update to secure signature checks in /etc/pacman.conf:
-# Set SigLevel = Required DatabaseOptional under [ghostedarch]</code></pre>
-          </div>
+            <!-- Packages Grid Title & Search -->
+            <div class="packages-browser-header">
+                <h3>Select & Install Packages</h3>
+                <div class="search-input-wrapper">
+                    <input type="text" id="search-input" placeholder="Search custom packages..." onkeyup="filterPackages()">
+                </div>
+            </div>
+
+            <div class="packages-grid" id="packages-container">
+                <!-- Loaded dynamically by JS -->
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading package metadata...</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Packages Browser Section -->
-    <section id="packages" class="packages-section">
-      <div class="packages-header">
-        <div class="title-area">
-          <h2><i class="fa-solid fa-box-open text-gradient"></i> Package Registry</h2>
-          <p>Search, inspect, and install custom compiled distribution packages</p>
+    <section class="section specs" id="specs">
+        <div class="container specs-container">
+            <div class="specs-content">
+                <h2 class="reveal-text">Raw Power. Beautifully Executed.</h2>
+                <p class="reveal-text">Beneath the cinematic surface lies the bleeding-edge performance of Arch Linux,
+                    powered by the Hyprland Wayland compositor.</p>
+                <ul class="specs-list">
+                    <li><strong>Base:</strong> Arch Linux (x86_64)</li>
+                    <li><strong>Compositor:</strong> Hyprland (Wayland)</li>
+                    <li><strong>Shell:</strong> Bash with custom prompts</li>
+                    <li><strong>Terminal:</strong> Kitty (GPU-accelerated)</li>
+                </ul>
+            </div>
+            <div class="specs-image-wrapper">
+                <div class="specs-image glass-panel">
+                    <img src="image.png" alt="Ghosted Arch System Specs (Neofetch)" class="floating-img">
+                </div>
+            </div>
         </div>
-        
-        <!-- Search & Category Filters -->
-        <div class="filter-controls">
-          <div class="search-box-wrapper">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="search-input" placeholder="Search packages by name, description..." onkeyup="filterPackages()">
-          </div>
-        </div>
-      </div>
-
-      <!-- Packages Grid -->
-      <div class="packages-grid" id="packages-container">
-        <!-- Loader / Fallback -->
-        <div class="loading-state" id="loading-indicator">
-          <div class="spinner"></div>
-          <p>Analyzing packages database...</p>
-        </div>
-      </div>
     </section>
 
-  </main>
+    <section class="section cta" id="download">
+        <div class="cta-content glass-panel glow-border pulse-glow">
+            <h2 class="reveal-text">Ready to transcend?</h2>
+            <p>Join the future of desktop environments. Ghosted Arch is waiting.</p>
+            <button class="btn-primary large magnetic" data-strength="50">Download ISO</button>
+        </div>
+    </section>
 
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-logo">
-        <i class="fa-solid fa-ghost"></i> Ghosted<span>Arch</span>
-      </div>
-      <p class="copyright">&copy; 2026 GhostedArch Distro Project. Crafted for high-end customization.</p>
-      <div class="footer-meta">
-        <span><i class="fa-solid fa-database"></i> Database: ghostedarch.db</span>
-        <span><i class="fa-solid fa-shield-halved"></i> Signed Packages</span>
-      </div>
-    </div>
-  </footer>
+    <footer>
+        <p>&copy; 2026 Ghosted Arch OS. Crafted with precision.</p>
+    </footer>
 
-  <!-- Script logic -->
-  <script src="app.js"></script>
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="app.js"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>
