@@ -1,0 +1,27 @@
+post_install() {
+  # Loop through all real users in the /home directory
+  for user_home in /home/*; do
+    [ -d "$user_home" ] || continue
+    username=$(basename "$user_home")
+    
+    # Target directory for Hyprland configuration
+    hypr_dir="$user_home/.config/hypr"
+    
+    # If the user has Hyprland configurations initialized, set up wallpapers link
+    if [ -d "$hypr_dir" ]; then
+      # Only append / create link if the wallpaper directory doesn't already exist
+      if [ ! -e "$hypr_dir/wallpaper" ] && [ ! -L "$hypr_dir/wallpaper" ]; then
+        echo " ==> Setting up GhostedArch wallpapers symlink for user: $username..."
+        ln -sf /usr/share/backgrounds/ghostedarch "$hypr_dir/wallpaper"
+        
+        # Ensure user owns their own symlink
+        user_group=$(id -gn "$username" 2>/dev/null || echo "$username")
+        chown -h "$username":"$user_group" "$hypr_dir/wallpaper"
+      fi
+    fi
+  done
+}
+
+post_upgrade() {
+  post_install "$@"
+}
