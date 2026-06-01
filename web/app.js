@@ -133,9 +133,13 @@ async function loadPackages() {
   renderPackages(packages);
 }
 
+let showAllPackagesState = false;
+
 // Render Packages Cards Grid
 function renderPackages(items) {
   const container = document.getElementById("packages-container");
+  const footerContainer = document.getElementById("packages-footer-container");
+  const showMoreBtn = document.getElementById("show-more-btn");
   
   if (!container) return;
   container.innerHTML = "";
@@ -148,12 +152,30 @@ function renderPackages(items) {
         <p>No matches matching your search criteria. Try another search query.</p>
       </div>
     `;
+    if (footerContainer) footerContainer.style.display = "none";
     return;
   }
   
-  items.forEach(pkg => {
+  // Decide how many packages to show
+  let displayItems = items;
+  if (!showAllPackagesState && items.length > 3) {
+    displayItems = items.slice(0, 3);
+    if (footerContainer) {
+      footerContainer.style.display = "block";
+      showMoreBtn.innerText = "Show All Packages";
+    }
+  } else if (items.length > 3) {
+    if (footerContainer) {
+      footerContainer.style.display = "block";
+      showMoreBtn.innerText = "Show Less";
+    }
+  } else {
+    if (footerContainer) footerContainer.style.display = "none";
+  }
+  
+  displayItems.forEach(pkg => {
     const card = document.createElement("article");
-    card.className = "package-card animate-fade-in";
+    card.className = "package-card glass-panel";
     
     // Dependencies tag list
     const depsText = pkg.dependencies.length > 0 ? pkg.dependencies.join(", ") : "None";
@@ -192,6 +214,29 @@ function renderPackages(items) {
     
     container.appendChild(card);
   });
+  
+  // Stagger reveal card animation using GSAP if present
+  if (typeof gsap !== 'undefined') {
+    gsap.from(".package-card", {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power3.out",
+      overwrite: "auto"
+    });
+  }
+}
+
+// Toggle Show All / Show 3 Packages
+function toggleShowAllPackages() {
+  showAllPackagesState = !showAllPackagesState;
+  renderPackages(packages);
+  
+  // Smooth scroll back to packages header if closing
+  if (!showAllPackagesState) {
+    document.getElementById("packages").scrollIntoView({ behavior: "smooth" });
+  }
 }
 
 // Fuzzy Search Filtering
