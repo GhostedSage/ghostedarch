@@ -18,15 +18,6 @@ echo " ==> Starting GhostedArch package compilation..."
 if [ "$EUID" -eq 0 ]; then
   echo " ==> Running as root. Setting up low-privilege 'builder' user..."
   
-  # Create builder user
-  if ! id -u builder >/dev/null 2>&1; then
-    useradd -m -g wheel -s /bin/bash builder
-  fi
-  
-  # Configure sudoers for builder
-  echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
-  chmod 0440 /etc/sudoers.d/builder
-  
   # Initialize pacman database and keyrings if in a bare docker container
   if [ ! -d /var/lib/pacman/local ]; then
     echo " ==> Initializing pacman keyring..."
@@ -37,6 +28,16 @@ if [ "$EUID" -eq 0 ]; then
   # Sync package databases and install core base-devel tools if missing
   echo " ==> Updating system packages..."
   pacman -Sy --noconfirm --needed base-devel git sudo
+  
+  # Create builder user
+  if ! id -u builder >/dev/null 2>&1; then
+    useradd -m -g wheel -s /bin/bash builder
+  fi
+  
+  # Configure sudoers for builder
+  mkdir -p /etc/sudoers.d
+  echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder
+  chmod 0440 /etc/sudoers.d/builder
   
   # Adjust permissions of workspace so builder can write to it
   chown -R builder:wheel "$WORKSPACE_DIR"
