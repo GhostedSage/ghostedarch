@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Utility;TextEditor;
+Comment=Beautiful visual note-taking app
+Exec=ghostednotes
+Icon=ghostednotes
+StartupWMClass=ghostednotes
+Name=GhostedNotes
+Terminal=false
+Type=Application

@@ -1,0 +1,19 @@
+# Maintainer: Bishal Poudel
+pkgname=ghostednotes
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Beautiful visual note-taking app built with Tauri"
+arch=('x86_64')
+url="https://github.com/ghostedsage/ghostednotes"
+license=('MIT')
+depends=('webkit2gtk-4.1' 'gtk3' 'cairo' 'glib2' 'dbus')
+source=("ghostednotes"
+        "ghostednotes.desktop"
+        "icon.png")
+md5sums=('SKIP' 'SKIP' 'SKIP')
+
+package() {
+  install -Dm755 "$srcdir/ghostednotes" "$pkgdir/usr/bin/ghostednotes"
+  install -Dm644 "$srcdir/ghostednotes.desktop" "$pkgdir/usr/share/applications/ghostednotes.desktop"
+  install -Dm644 "$srcdir/icon.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/ghostednotes.png"
+}
