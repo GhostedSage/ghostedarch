@@ -1,0 +1,20 @@
+pkgname=ghostedarch-keyring
+pkgver=2026.06.01
+pkgrel=1
+pkgdesc="GhostedArch Linux official signing keyring"
+arch=('any')
+url="https://github.com/GhostedSage/ghostedarch"
+license=('GPL')
+source=("ghostedarch.gpg"
+        "ghostedarch-trusted"
+        "ghostedarch-revoked")
+install=ghostedarch-keyring.install
+sha256sums=('SKIP' 'SKIP' 'SKIP')
+
+package() {
+  # Keyring files for pacman-key to load
+  install -dm755 "${pkgdir}/usr/share/pacman/keyrings"
+  install -m644 ghostedarch.gpg "${pkgdir}/usr/share/pacman/keyrings/"
+  install -m644 ghostedarch-trusted "${pkgdir}/usr/share/pacman/keyrings/"
+  install -m644 ghostedarch-revoked "${pkgdir}/usr/share/pacman/keyrings/"
+}

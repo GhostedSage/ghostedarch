@@ -1,0 +1,61 @@
+# GhostedArch Custom Neofetch Configuration
+# Cyberpunk sleek styling and neon accents
+
+print_info() {
+    info " \e[36mOS\e[0m" distro
+    info " \e[36mHost\e[0m" model
+    info " \e[36mKernel\e[0m" kernel
+    info " \e[36mUptime\e[0m" uptime
+    info " \e[36mPackages\e[0m" packages
+    info " \e[36mShell\e[0m" shell
+    info " \e[36mDE\e[0m" de
+    info " \e[36mWM\e[0m" wm
+    info " \e[36mTerminal\e[0m" term
+    info " \e[36mCPU\e[0m" cpu
+    info " \e[36mGPU\e[0m" gpu
+    info " \e[36mMemory\e[0m" memory
+    info cols
+}
+
+# Color settings
+colors=(13 14 15 12 12 15)
+bold="on"
+underline_enabled="on"
+underline_char="━"
+
+# CPU
+cpu_brand="on"
+cpu_speed="on"
+cpu_cores="off"
+cpu_temp="off"
+
+# Memory
+memory_percent="on"
+memory_unit="mib"
+
+# Custom ASCII logo for GhostedArch distro
+# A futuristic, ghostly skull-helmet stylized mask
+ascii_distro="auto"
+ascii_colors=(5 12)
+ascii_bold="on"
+
+# Define the custom ASCII art directly
+# Utilizing neofetch inline custom ascii feature
+image_source="ascii"
+ascii_logo="
+        \e[1;35m      .---.
+             /     \
+            \\e[1;36m| \e[1;35m() ()\e[1;36m |
+            \e[1;35m \\  ^  /
+             \e[1;36m|||||||
+             \e[1;36m'-----'
+\e[1;35m     ▗▟███████████▙▖
+\e[1;35m   ▗████▛▘  ▝▜█████▙
+\e[1;36m  ▗████▛      ▜█████
+\e[1;36m  █████▌ ▟██▖ ▐█████
+\e[1;36m  ▜████▙ ▜██▘ ▟████▛
+\e[1;35m   ▜█████████████▛
+\e[1;35m     ▝▜███████▛▘\e[0m
+"
+image_source="inline"
+image_custom="$ascii_logo"

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# GhostedArch custom neofetch launcher
+exec neofetch --config /usr/share/ghostedarch/neofetch/config.conf "$@"

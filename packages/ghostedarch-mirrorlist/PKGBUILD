@@ -1,0 +1,14 @@
+pkgname=ghostedarch-mirrorlist
+pkgver=2026.06.01
+pkgrel=1
+pkgdesc="GhostedArch official repository mirrorlist configuration"
+arch=('any')
+url="https://github.com/GhostedSage/ghostedarch"
+license=('GPL')
+source=("mirrorlist")
+sha256sums=('SKIP')
+
+package() {
+  install -dm755 "${pkgdir}/etc/pacman.d"
+  install -m644 mirrorlist "${pkgdir}/etc/pacman.d/ghostedarch-mirrorlist"
+}

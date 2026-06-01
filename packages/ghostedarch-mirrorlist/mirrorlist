@@ -1,0 +1,6 @@
+#
+# GhostedArch Pacman Mirrorlist
+#
+
+# Primary Global CDN Mirror (GitHub Pages)
+Server = https://ghostedsage.github.io/ghostedarch/repo/x86_64

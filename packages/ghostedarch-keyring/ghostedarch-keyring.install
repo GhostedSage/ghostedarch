@@ -1,0 +1,15 @@
+post_install() {
+  if [ -x usr/bin/pacman-key ]; then
+    echo " ==> Initializing GhostedArch pacman keyring..."
+    usr/bin/pacman-key --init
+    echo " ==> Populating keyring with GhostedArch keys..."
+    usr/bin/pacman-key --populate ghostedarch
+  fi
+}
+
+post_upgrade() {
+  if [ -x usr/bin/pacman-key ]; then
+    echo " ==> Updating GhostedArch pacman keyring..."
+    usr/bin/pacman-key --populate ghostedarch
+  fi
+}

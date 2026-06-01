@@ -1,0 +1,10 @@
+# GhostedArch Pacman Keyring Trust File
+# Format: <fingerprint> <trust-value>
+# Trust values:
+#  1 = Unknown
+#  2 = Never trusted
+#  3 = Marginally trusted
+#  4 = Fully trusted
+#  5 = Ultimately trusted
+#
+D8F0B8678C00F415C2162C3A8FE2A69A1CBA4D01 4

@@ -1,0 +1,21 @@
+pkgname=ghostedarch-neofetch
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Custom neofetch wrapper displaying GhostedArch branding and custom ASCII logo"
+arch=('any')
+url="https://github.com/GhostedSage/ghostedarch"
+license=('MIT')
+depends=('neofetch')
+source=("ghostedarch-neofetch"
+        "neofetch-config")
+sha256sums=('SKIP' 'SKIP')
+
+package() {
+  # Install custom command wrapper
+  install -dm755 "${pkgdir}/usr/bin"
+  install -m755 ghostedarch-neofetch "${pkgdir}/usr/bin/ghostedarch-neofetch"
+
+  # Install custom neofetch configurations
+  install -dm755 "${pkgdir}/usr/share/ghostedarch/neofetch"
+  install -m644 neofetch-config "${pkgdir}/usr/share/ghostedarch/neofetch/config.conf"
+}

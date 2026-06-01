@@ -1,0 +1,19 @@
+pkgname=ghostedarch-artwork
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Official wallpapers and branding visual assets for the GhostedArch Linux distribution"
+arch=('any')
+url="https://github.com/GhostedSage/ghostedarch"
+license=('custom')
+source=("ghostedarch-wallpaper.png")
+sha256sums=('SKIP')
+
+package() {
+  # Install wallpapers to system background directory
+  install -dm755 "${pkgdir}/usr/share/backgrounds/ghostedarch"
+  install -m644 ghostedarch-wallpaper.png "${pkgdir}/usr/share/backgrounds/ghostedarch/ghostedarch-wallpaper.png"
+
+  # Symlink as default wallpaper
+  install -dm755 "${pkgdir}/usr/share/backgrounds"
+  ln -sf ghostedarch/ghostedarch-wallpaper.png "${pkgdir}/usr/share/backgrounds/ghostedarch-default.png"
+}
