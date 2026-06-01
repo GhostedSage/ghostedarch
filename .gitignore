@@ -1,0 +1,6 @@
+# Ignore built package binaries in package source directories
+packages/**/*.pkg.tar.zst
+
+# Ignore makepkg intermediate build folders
+packages/**/src/
+packages/**/pkg/

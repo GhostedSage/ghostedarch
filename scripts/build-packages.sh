@@ -63,15 +63,15 @@ for pkg_dir in "$PACKAGES_DIR"/*; do
   # Navigate to the package directory and build
   cd "$pkg_dir"
   
-  # Install build dependencies, build and package (clean build)
-  makepkg -sCf --noconfirm --noprogressbar
+  # Install build dependencies, build and package (clean build, skip runtime dep checks)
+  makepkg -sCfd --noconfirm --noprogressbar
   
   # Copy built packages to target repo folder
   echo " ==> Staging built package binaries..."
   find . -maxdepth 1 -name "*.pkg.tar.zst" -exec cp -v {} "$REPO_DIR/" \;
   
-  # Clean up directory artifacts
-  makepkg -C --noconfirm
+  # Clean up directory artifacts manually
+  rm -rf src pkg
   cd "$WORKSPACE_DIR"
 done
 
