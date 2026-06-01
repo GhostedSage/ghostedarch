@@ -1,0 +1,53 @@
+pkgname=ghostedsetting
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Ghosted Arch Setting, a Hyprland control center for GhostedArch"
+arch=('any')
+url="https://github.com/GhostedSage/ghostedarch"
+license=('MIT')
+depends=('python' 'python-gobject' 'python-psutil' 'gtk4' 'libadwaita' 'hyprland')
+source=(main.py
+        hypr_parser.py
+        sys_info.py
+        style.css
+  setting.png)
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+      'SKIP')
+
+package() {
+  install -dm755 "$pkgdir/usr/bin"
+  install -dm755 "$pkgdir/usr/share/ghostedsetting/views"
+  install -dm755 "$pkgdir/usr/share/applications"
+  install -dm755 "$pkgdir/usr/share/pixmaps"
+  install -dm755 "$pkgdir/usr/share/icons/hicolor/128x128/apps"
+
+  install -m644 "$srcdir/main.py" "$pkgdir/usr/share/ghostedsetting/main.py"
+  install -m644 "$srcdir/hypr_parser.py" "$pkgdir/usr/share/ghostedsetting/hypr_parser.py"
+  install -m644 "$srcdir/sys_info.py" "$pkgdir/usr/share/ghostedsetting/sys_info.py"
+  install -m644 "$srcdir/style.css" "$pkgdir/usr/share/ghostedsetting/style.css"
+  install -m644 "$srcdir/setting.png" "$pkgdir/usr/share/ghostedsetting/setting.png"
+  install -m644 "$startdir"/views/*.py "$pkgdir/usr/share/ghostedsetting/views/"
+
+  cat > "$pkgdir/usr/bin/ghostedsetting" <<'EOF'
+#!/bin/sh
+exec python3 /usr/share/ghostedsetting/main.py "$@"
+EOF
+  chmod 755 "$pkgdir/usr/bin/ghostedsetting"
+
+  cat > "$pkgdir/usr/share/applications/ghostedsetting.desktop" <<'EOF'
+[Desktop Entry]
+Name=Ghosted Arch Setting
+Comment=Control panel for Ghosted Arch Hyprland setup
+Exec=ghostedsetting
+Icon=ghostedsetting
+Terminal=false
+Type=Application
+Categories=Settings;System;
+EOF
+
+  install -m644 "$srcdir/setting.png" "$pkgdir/usr/share/pixmaps/ghostedsetting.png"
+  install -m644 "$srcdir/setting.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/ghostedsetting.png"
+}
