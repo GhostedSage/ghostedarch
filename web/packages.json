@@ -1,16 +1,5 @@
 [
   {
-    "name": "ghostedarch-artwork",
-    "version": "1.0.0-1",
-    "description": "Official wallpapers and branding visual assets for the GhostedArch Linux distribution",
-    "url": "https://github.com/GhostedSage/ghostedarch",
-    "size": "807 KB",
-    "license": "custom",
-    "dependencies": [],
-    "filename": "ghostedarch-artwork-1.0.0-1-any.pkg.tar.zst"
-  }
-,
-  {
     "name": "ghostedarch-keyring",
     "version": "2026.06.01-1",
     "description": "GhostedArch Linux official signing keyring",
@@ -41,5 +30,16 @@
     "license": "MIT",
     "dependencies": ["neofetch"],
     "filename": "ghostedarch-neofetch-1.0.0-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostedarch-wallpaper",
+    "version": "1.0.0-1",
+    "description": "Official wallpapers and branding visual assets for the GhostedArch Linux distribution",
+    "url": "https://github.com/GhostedSage/ghostedarch",
+    "size": "8 MB",
+    "license": "custom",
+    "dependencies": [],
+    "filename": "ghostedarch-wallpaper-1.0.0-1-any.pkg.tar.zst"
   }
 ]

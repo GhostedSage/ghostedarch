@@ -36,14 +36,14 @@ const fallbackPackages = [
     filename: "ghostedarch-neofetch-1.0.0-1-any.pkg.tar.zst"
   },
   {
-    name: "ghostedarch-artwork",
+    name: "ghostedarch-wallpaper",
     version: "1.0.0-1",
-    description: "High-resolution desktop wallpapers, custom GTK styling artwork, and branding assets.",
+    description: "High-resolution custom space-cyberpunk desktop wallpapers and branding visual assets.",
     url: "https://github.com/GhostedSage/ghostedarch",
-    size: "1.78 MB",
+    size: "807 KB",
     license: "custom",
     dependencies: [],
-    filename: "ghostedarch-artwork-1.0.0-1-any.pkg.tar.zst"
+    filename: "ghostedarch-wallpaper-1.0.0-1-any.pkg.tar.zst"
   }
 ];
 
