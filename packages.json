@@ -1,0 +1,89 @@
+[
+  {
+    "name": "ghostedarch-keyring",
+    "version": "2026.06.01-1",
+    "description": "GhostedArch Linux official signing keyring",
+    "url": "https://github.com/GhostedSage/ghostedarch",
+    "size": "0 KB",
+    "license": "GPL",
+    "dependencies": [],
+    "filename": "ghostedarch-keyring-2026.06.01-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostedarch-mirrorlist",
+    "version": "2026.06.01-1",
+    "description": "GhostedArch official repository mirrorlist configuration",
+    "url": "https://github.com/GhostedSage/ghostedarch",
+    "size": "0 KB",
+    "license": "GPL",
+    "dependencies": [],
+    "filename": "ghostedarch-mirrorlist-2026.06.01-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostedarch-neofetch",
+    "version": "1.0.0-1",
+    "description": "Custom neofetch wrapper displaying GhostedArch branding and custom ASCII logo",
+    "url": "https://github.com/GhostedSage/ghostedarch",
+    "size": "1 KB",
+    "license": "MIT",
+    "dependencies": ["neofetch"],
+    "filename": "ghostedarch-neofetch-1.0.0-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostedarch-wallpaper",
+    "version": "1.0.0-1",
+    "description": "Official wallpapers and branding visual assets for the GhostedArch Linux distribution",
+    "url": "https://github.com/GhostedSage/ghostedarch",
+    "size": "8 MB",
+    "license": "custom",
+    "dependencies": [],
+    "filename": "ghostedarch-wallpaper-1.0.0-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostednotes",
+    "version": "0.1.0-1",
+    "description": "Beautiful visual note-taking app built with Tauri",
+    "url": "https://github.com/ghostedsage/ghostednotes",
+    "size": "9 MB",
+    "license": "MIT",
+    "dependencies": ["webkit2gtk-4.1"],
+    "filename": "ghostednotes-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostednotes-debug",
+    "version": "0.1.0-1",
+    "description": "Detached debugging symbols for ghostednotes",
+    "url": "https://github.com/ghostedsage/ghostednotes",
+    "size": "2 MB",
+    "license": "MIT",
+    "dependencies": [],
+    "filename": "ghostednotes-debug-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostedsetting",
+    "version": "1.0.0-1",
+    "description": "Ghosted Arch Setting, a Hyprland control center for GhostedArch",
+    "url": "https://github.com/GhostedSage/ghostedarch",
+    "size": "1 MB",
+    "license": "MIT",
+    "dependencies": ["python"],
+    "filename": "ghostedsetting-1.0.0-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "tux-warden",
+    "version": "1.0.0-1",
+    "description": "Linux Security Operations Center — virus scanning, rootkit detection, UFW firewall, and system log auditing",
+    "url": "https://github.com/BishalPoudel-1/tux-warden",
+    "size": "15 MB",
+    "license": "MIT",
+    "dependencies": ["webkit2gtk-4.1"],
+    "filename": "tux-warden-1.0.0-1-x86_64.pkg.tar.zst"
+  }
+]
