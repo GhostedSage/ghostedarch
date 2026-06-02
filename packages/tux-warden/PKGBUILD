@@ -1,0 +1,125 @@
+# Maintainer: Bishal Poudel
+# Contributor: Tux Warden Project
+#
+# Self-contained binary package — all files are bundled alongside this PKGBUILD.
+# Install with:  makepkg -si
+#
+# HOW THIS PKGBUILD WORKS
+# ────────────────────────
+# All assets (binary, SVG icon, desktop entry, etc.) live in the same directory
+# as this PKGBUILD.  makepkg copies them into $srcdir and package() picks them
+# up from there.  No internet access or build tools are required.
+
+pkgname=tux-warden
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Linux Security Operations Center — virus scanning, rootkit detection, UFW firewall, and system log auditing"
+arch=('x86_64')
+url="https://github.com/BishalPoudel-1/tux-warden"
+license=('MIT')
+
+# ── Runtime dependencies (Tauri 2 + WebKitGTK on Arch) ─────────────────────
+depends=(
+    'webkit2gtk-4.1'
+    'gtk3'
+    'libsoup3'
+    'glib2'
+    'cairo'
+    'pango'
+    'gdk-pixbuf2'
+    'dbus'
+    'xdg-user-dirs'
+    'polkit'
+)
+
+optdepends=(
+    'clamav: virus and malware scanning'
+    'clamav-database: virus signature database (run freshclam after install)'
+    'rkhunter: rootkit detection'
+    'chkrootkit: alternative rootkit scanner'
+    'ufw: UFW firewall management'
+    'cronie: scheduled scan support'
+    'xhost: X11 display access for root GUI'
+)
+
+# Binary package — no Rust/Node.js needed at install time
+makedepends=()
+options=('!debug' '!strip' '!buildflags')
+
+# ── All local sources (files in same directory as this PKGBUILD) ─────────────
+source=(
+    "tux-warden"
+    "tux-warden.desktop"
+    "tux_warden.svg"
+    "LICENSE"
+)
+sha256sums=(
+    'SKIP'  # tux-warden binary
+    'SKIP'  # tux-warden.desktop
+    'SKIP'  # tux_warden.svg (main icon)
+    'SKIP'  # LICENSE
+)
+
+# ── Package ──────────────────────────────────────────────────────────────────
+package() {
+    # ── Binary ──────────────────────────────────────────────────────────────
+    install -Dm755 "$srcdir/tux-warden" \
+        "$pkgdir/usr/bin/tux-warden"
+
+    # ── Desktop entry ────────────────────────────────────────────────────────
+    install -Dm644 "$srcdir/tux-warden.desktop" \
+        "$pkgdir/usr/share/applications/tux-warden.desktop"
+
+    # ── SVG icon — the one true icon ─────────────────────────────────────────
+    install -Dm644 "$srcdir/tux_warden.svg" \
+        "$pkgdir/usr/share/icons/hicolor/scalable/apps/tux-warden.svg"
+
+    # ── AppStream / metainfo ─────────────────────────────────────────────────
+    install -Dm644 /dev/stdin \
+        "$pkgdir/usr/share/metainfo/com.tuxwarden.app.metainfo.xml" << 'APPSTREAM'
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.tuxwarden.app</id>
+  <name>Tux Warden</name>
+  <summary>Linux Security Operations Center</summary>
+  <description>
+    <p>
+      Tux Warden is a comprehensive Linux security suite providing virus scanning
+      with ClamAV, rootkit detection via rkhunter and chkrootkit, UFW firewall
+      management, system log auditing, scheduled scans, and a security audit
+      trail — all in a unified, modern desktop interface.
+    </p>
+  </description>
+  <launchable type="desktop-id">tux-warden.desktop</launchable>
+  <url type="homepage">https://github.com/BishalPoudel-1/tux-warden</url>
+  <url type="bugtracker">https://github.com/BishalPoudel-1/tux-warden/issues</url>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <developer_name>Bishal Poudel</developer_name>
+  <releases>
+    <release version="1.0.0" date="2026-06-01">
+      <description><p>Initial release.</p></description>
+    </release>
+  </releases>
+  <categories>
+    <category>System</category>
+    <category>Security</category>
+    <category>Utility</category>
+  </categories>
+  <keywords>
+    <keyword>security</keyword>
+    <keyword>antivirus</keyword>
+    <keyword>firewall</keyword>
+    <keyword>rootkit</keyword>
+    <keyword>linux</keyword>
+    <keyword>clamav</keyword>
+    <keyword>ufw</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+</component>
+APPSTREAM
+
+    # ── License ──────────────────────────────────────────────────────────────
+    install -Dm644 "$srcdir/LICENSE" \
+        "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

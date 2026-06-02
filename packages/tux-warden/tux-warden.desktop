@@ -1,0 +1,23 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Tux Warden
+GenericName=Linux Security Suite
+Comment=Comprehensive Linux security — virus scanning, rootkit detection, firewall management, and system log auditing
+Exec=sudo tux-warden %u
+Icon=tux-warden
+Terminal=false
+StartupNotify=true
+StartupWMClass=tux-warden
+Categories=System;Security;Utility;
+Keywords=security;antivirus;firewall;rootkit;scanner;linux;
+MimeType=
+Actions=QuickScan;NewWindow;
+
+[Desktop Action QuickScan]
+Name=Run Quick Scan
+Exec=pkexec tux-warden
+
+[Desktop Action NewWindow]
+Name=Open New Window
+Exec=pkexec tux-warden
