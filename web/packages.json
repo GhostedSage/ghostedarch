@@ -12,13 +12,13 @@
 ,
   {
     "name": "ghosted-compositor",
-    "version": "0.1.0-1",
+    "version": "0.1.0-2",
     "description": "Native, high-performance Wayland compositor for GhostedLand",
     "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
     "size": "6 MB",
     "license": "GPL-3.0",
     "dependencies": ["wayland"],
-    "filename": "ghosted-compositor-0.1.0-1-x86_64.pkg.tar.zst"
+    "filename": "ghosted-compositor-0.1.0-2-x86_64.pkg.tar.zst"
   }
 ,
   {
@@ -107,17 +107,6 @@
     "license": "GPL-3.0",
     "dependencies": ["glibc"],
     "filename": "ghostedctl-0.1.0-1-x86_64.pkg.tar.zst"
-  }
-,
-  {
-    "name": "ghostedland",
-    "version": "0.1.0-1",
-    "description": "GhostedLand — Complete Unified Wayland Desktop Platform for Ghosted Arch",
-    "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
-    "size": "0 KB",
-    "license": "GPL-3.0",
-    "dependencies": ["ghosted-bar"],
-    "filename": "ghostedland-0.1.0-1-any.pkg.tar.zst"
   }
 ,
   {

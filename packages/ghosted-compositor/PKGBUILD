@@ -1,7 +1,7 @@
 # Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
 pkgname=ghosted-compositor
 pkgver=0.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Native, high-performance Wayland compositor for GhostedLand"
 arch=('x86_64')
 url="https://github.com/BishalPoudel-1/ghostedarch-tools"
@@ -14,7 +14,7 @@ depends=(
     'libinput'
     'mesa'
     'pixman'
-    'libseat'
+    'seatd'
 )
 options=('!debug' '!strip' '!buildflags')
 
