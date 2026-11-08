@@ -4,7 +4,7 @@
 
 pkgname=ghostedland
 pkgver=0.1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="GhostedLand — Complete Unified Wayland Desktop Platform for Ghosted Arch"
 arch=('any')
 url="https://github.com/BishalPoudel-1/ghostedarch-tools"
