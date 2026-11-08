@@ -1,0 +1,50 @@
+# Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+pkgname=ghosted-settings
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="GTK4 and libadwaita desktop settings application for Ghosted Arch"
+arch=('x86_64')
+url="https://github.com/BishalPoudel-1/ghostedarch-tools"
+license=('GPL-3.0')
+provides=('ghosted-setting')
+conflicts=('ghosted-setting')
+
+depends=(
+    'gtk4'
+    'libadwaita'
+    'pango'
+    'cairo'
+    'hyprsunset'
+    'power-profiles-daemon'
+    'bluez'
+    'networkmanager'
+)
+makedepends=(
+    'cargo'
+    'git'
+    'pkgconf'
+)
+source=("git+https://github.com/BishalPoudel-1/ghostedarch-tools.git#branch=main")
+sha256sums=('SKIP')
+
+build() {
+    cd "$srcdir/ghostedarch-tools/ghostedland"
+    export CARGO_TARGET_DIR="target"
+    # Build ONLY ghosted-settings
+    cargo build --release --locked -p ghosted-settings
+}
+
+package() {
+    cd "$srcdir/ghostedarch-tools/ghostedland"
+
+    # Install main binary
+    install -Dm755 "target/release/ghosted-settings" "$pkgdir/usr/bin/ghosted-settings"
+
+    # Symlink ghosted-setting -> ghosted-settings for convenience
+    ln -s ghosted-settings "$pkgdir/usr/bin/ghosted-setting"
+
+    # Install desktop launcher entry
+    if [ -f "crates/ghosted-settings/org.ghosted.settings.desktop" ]; then
+        install -Dm644 "crates/ghosted-settings/org.ghosted.settings.desktop" "$pkgdir/usr/share/applications/org.ghosted.settings.desktop"
+    fi
+}

@@ -27,7 +27,12 @@ if [ "$EUID" -eq 0 ]; then
   
   # Sync package databases and install core base-devel tools if missing
   echo " ==> Updating system packages..."
-  pacman -Sy --noconfirm --needed base-devel git sudo
+  pacman -Syu --noconfirm --needed \
+    base-devel git sudo \
+    cargo rust pkgconf cmake gcc \
+    wayland vulkan-icd-loader libxkbcommon fontconfig freetype2 \
+    gtk4 libadwaita pango cairo \
+    qt6-base qt6-declarative qt6-5compat greetd cage
   
   # Create builder user
   if ! id -u builder >/dev/null 2>&1; then

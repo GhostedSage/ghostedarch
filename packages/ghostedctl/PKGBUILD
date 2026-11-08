@@ -1,0 +1,30 @@
+# Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+pkgname=ghostedctl
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Unified command-line interface and diagnostic tool for Ghosted Arch"
+arch=('x86_64')
+url="https://github.com/BishalPoudel-1/ghostedarch-tools"
+license=('GPL-3.0')
+
+depends=(
+    'glibc'
+)
+makedepends=(
+    'cargo'
+    'git'
+)
+source=("git+https://github.com/BishalPoudel-1/ghostedarch-tools.git#branch=main")
+sha256sums=('SKIP')
+
+build() {
+    cd "$srcdir/ghostedarch-tools/ghostedland"
+    export CARGO_TARGET_DIR="target"
+    cargo build --release --locked -p ghostedctl
+}
+
+package() {
+    cd "$srcdir/ghostedarch-tools/ghostedland"
+    install -Dm755 "target/release/ghostedctl" "$pkgdir/usr/bin/ghostedctl"
+}
+

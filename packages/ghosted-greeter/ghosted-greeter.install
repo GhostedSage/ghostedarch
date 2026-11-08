@@ -1,0 +1,11 @@
+post_install() {
+    # Ensure 'greeter' user exists and belongs to video, input, and render groups
+    if id greeter &>/dev/null; then
+        usermod -aG video,input,render greeter 2>/dev/null || true
+    fi
+}
+
+post_upgrade() {
+    post_install
+}
+

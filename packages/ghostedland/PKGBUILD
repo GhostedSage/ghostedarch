@@ -1,0 +1,25 @@
+# Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+pkgname=ghostedland
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="GhostedLand — Complete Unified Wayland Desktop Platform for Ghosted Arch"
+arch=('any')
+url="https://github.com/BishalPoudel-1/ghostedarch-tools"
+license=('GPL-3.0')
+
+# Installing this meta-package automatically pulls in the entire Ghosted desktop suite
+depends=(
+    'ghosted-bar'
+    'ghosted-greeter'
+    'ghosted-settings'
+    'ghosted-wallpaper'
+    'ghostedctl'
+    'xdg-desktop-portal-hyprland'
+    'xdg-desktop-portal-gtk'
+)
+
+package() {
+    install -dm755 "$pkgdir/usr/share/doc/ghostedland"
+    echo "GhostedLand desktop meta-package" > "$pkgdir/usr/share/doc/ghostedland/README"
+}
+

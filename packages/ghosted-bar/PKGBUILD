@@ -1,0 +1,54 @@
+# Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+pkgname=ghosted-bar
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Modern, high-performance Wayland status bar and Control Center for Ghosted Arch"
+arch=('x86_64')
+url="https://github.com/BishalPoudel-1/ghostedarch-tools"
+license=('GPL-3.0')
+
+depends=(
+    'wayland'
+    'vulkan-icd-loader'
+    'libxkbcommon'
+    'fontconfig'
+    'freetype2'
+    'brightnessctl'
+    'power-profiles-daemon'
+    'bluez'
+    'networkmanager'
+)
+makedepends=(
+    'cargo'
+    'git'
+    'pkgconf'
+)
+source=("git+https://github.com/BishalPoudel-1/ghostedarch-tools.git#branch=main")
+sha256sums=('SKIP')
+
+build() {
+    cd "$srcdir/ghostedarch-tools/ghostedland"
+    export CARGO_TARGET_DIR="target"
+    # Build ONLY ghosted-bar
+    cargo build --release --locked -p ghosted-bar
+}
+
+package() {
+    cd "$srcdir/ghostedarch-tools/ghostedland"
+
+    # Install main binary
+    install -Dm755 "target/release/ghosted-bar" "$pkgdir/usr/bin/ghosted-bar"
+
+    # Install desktop shortcut
+    install -Dm644 "ghosted-bar/assets/ghosted-bar.desktop" "$pkgdir/usr/share/applications/ghosted-bar.desktop"
+
+    # Install template configuration and asset files
+    install -dm755 "$pkgdir/usr/share/ghosted-bar"
+    if [ -f "ghosted-bar/assets/pinned.json" ]; then
+        install -m644 "ghosted-bar/assets/pinned.json" "$pkgdir/usr/share/ghosted-bar/pinned.json.example"
+    fi
+    if [ -f "ghosted-bar/assets/colors.json" ]; then
+        install -m644 "ghosted-bar/assets/colors.json" "$pkgdir/usr/share/ghosted-bar/colors.json.example"
+    fi
+}
+
