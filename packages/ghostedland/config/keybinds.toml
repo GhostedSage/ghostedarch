@@ -1,0 +1,189 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║                    GHOSTED ARCH — DEFAULT KEYBINDINGS                      ║
+# ║                                                                            ║
+# ║  Keyboard shortcuts for the Ghosted compositor.                            ║
+# ║  SUPER = the "Windows" / "Meta" key.                                       ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+
+# ── Application Launchers ─────────────────────────────────────────────────────
+
+[[keybind]]
+keys = "SUPER + Return"
+action = "spawn"
+args = "ghosted-terminal"
+description = "Open terminal"
+
+[[keybind]]
+keys = "SUPER + E"
+action = "spawn"
+args = "thunar"
+description = "Open file manager"
+
+[[keybind]]
+keys = "SUPER + B"
+action = "spawn"
+args = "firefox"
+description = "Open browser"
+
+[[keybind]]
+keys = "SUPER + Space"
+action = "spawn"
+args = "ghosted-launcher"
+description = "Open application launcher"
+
+# ── Window Management ─────────────────────────────────────────────────────────
+
+[[keybind]]
+keys = "SUPER + Q"
+action = "close_window"
+description = "Close focused window"
+
+[[keybind]]
+keys = "SUPER + F"
+action = "fullscreen"
+description = "Toggle fullscreen"
+
+[[keybind]]
+keys = "SUPER + V"
+action = "toggle_floating"
+description = "Toggle floating mode"
+
+[[keybind]]
+keys = "SUPER + P"
+action = "toggle_pseudo"
+description = "Toggle pseudo-tiling"
+
+# ── Focus ─────────────────────────────────────────────────────────────────────
+
+[[keybind]]
+keys = "SUPER + H"
+action = "move_focus"
+args = "left"
+
+[[keybind]]
+keys = "SUPER + L"
+action = "move_focus"
+args = "right"
+
+[[keybind]]
+keys = "SUPER + K"
+action = "move_focus"
+args = "up"
+
+[[keybind]]
+keys = "SUPER + J"
+action = "move_focus"
+args = "down"
+
+# ── Workspaces ────────────────────────────────────────────────────────────────
+
+[[keybind]]
+keys = "SUPER + 1"
+action = "workspace"
+args = "1"
+
+[[keybind]]
+keys = "SUPER + 2"
+action = "workspace"
+args = "2"
+
+[[keybind]]
+keys = "SUPER + 3"
+action = "workspace"
+args = "3"
+
+[[keybind]]
+keys = "SUPER + 4"
+action = "workspace"
+args = "4"
+
+[[keybind]]
+keys = "SUPER + 5"
+action = "workspace"
+args = "5"
+
+[[keybind]]
+keys = "SUPER + 6"
+action = "workspace"
+args = "6"
+
+[[keybind]]
+keys = "SUPER + 7"
+action = "workspace"
+args = "7"
+
+[[keybind]]
+keys = "SUPER + 8"
+action = "workspace"
+args = "8"
+
+[[keybind]]
+keys = "SUPER + 9"
+action = "workspace"
+args = "9"
+
+# ── Move Window to Workspace ─────────────────────────────────────────────────
+
+[[keybind]]
+keys = "SUPER + SHIFT + 1"
+action = "move_to_workspace"
+args = "1"
+
+[[keybind]]
+keys = "SUPER + SHIFT + 2"
+action = "move_to_workspace"
+args = "2"
+
+[[keybind]]
+keys = "SUPER + SHIFT + 3"
+action = "move_to_workspace"
+args = "3"
+
+[[keybind]]
+keys = "SUPER + SHIFT + 4"
+action = "move_to_workspace"
+args = "4"
+
+[[keybind]]
+keys = "SUPER + SHIFT + 5"
+action = "move_to_workspace"
+args = "5"
+
+[[keybind]]
+keys = "SUPER + SHIFT + 6"
+action = "move_to_workspace"
+args = "6"
+
+[[keybind]]
+keys = "SUPER + SHIFT + 7"
+action = "move_to_workspace"
+args = "7"
+
+[[keybind]]
+keys = "SUPER + SHIFT + 8"
+action = "move_to_workspace"
+args = "8"
+
+[[keybind]]
+keys = "SUPER + SHIFT + 9"
+action = "move_to_workspace"
+args = "9"
+
+# ── System ────────────────────────────────────────────────────────────────────
+
+[[keybind]]
+keys = "SUPER + SHIFT + S"
+action = "spawn"
+args = "ghosted-screenshot"
+description = "Take screenshot"
+
+[[keybind]]
+keys = "SUPER + L"
+action = "spawn"
+args = "ghosted-lock"
+description = "Lock screen"
+
+[[keybind]]
+keys = "SUPER + SHIFT + Q"
+action = "exit"
+description = "Exit compositor"

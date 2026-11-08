@@ -1,0 +1,73 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║                        GHOSTED ARCH — THEME: GHOST                         ║
+# ║                                                                            ║
+# ║  The default dark theme for Ghosted Arch. Inspired by spectral aesthetics  ║
+# ║  — deep blacks, muted purples, and soft glows.                             ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+
+[ghost]
+name = "ghost"
+background = "#0d0d0d"
+foreground = "#e0e0e0"
+accent = "#7b68ee"
+border = "#2a2a2a"
+surface = "#1a1a1a"
+surface_variant = "#242424"
+error = "#ff5555"
+warning = "#f1c40f"
+success = "#50fa7b"
+info = "#8be9fd"
+
+# ── Additional theme variants ─────────────────────────────────────────────────
+
+[midnight]
+name = "midnight"
+background = "#0a0a14"
+foreground = "#c8c8d4"
+accent = "#5b8def"
+border = "#1e1e2e"
+surface = "#13132b"
+surface_variant = "#1a1a35"
+error = "#f38ba8"
+warning = "#fab387"
+success = "#a6e3a1"
+info = "#89b4fa"
+
+[phantom]
+name = "phantom"
+background = "#0f0f0f"
+foreground = "#d4d4d4"
+accent = "#e06c75"
+border = "#2c2c2c"
+surface = "#1c1c1c"
+surface_variant = "#262626"
+error = "#e06c75"
+warning = "#e5c07b"
+success = "#98c379"
+info = "#61afef"
+
+[arctic]
+name = "arctic"
+background = "#1a1b26"
+foreground = "#c0caf5"
+accent = "#7aa2f7"
+border = "#292e42"
+surface = "#24283b"
+surface_variant = "#2f3549"
+error = "#f7768e"
+warning = "#e0af68"
+success = "#9ece6a"
+info = "#7dcfff"
+
+[ember]
+name = "ember"
+background = "#1a0a0a"
+foreground = "#e8d0c0"
+accent = "#ff6b35"
+border = "#2e1a1a"
+surface = "#241414"
+surface_variant = "#2e1c1c"
+error = "#ff4444"
+warning = "#ffaa33"
+success = "#88cc66"
+info = "#66bbdd"

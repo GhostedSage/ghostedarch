@@ -1,0 +1,23 @@
+# Ghosted Profile: Minimal
+#
+# Clean, distraction-free desktop. Subtle effects, tight layout.
+
+[appearance]
+border_size = 1
+rounding = 4
+gaps_in = 2
+gaps_out = 4
+
+[appearance.blur]
+enabled = false
+radius = 0
+passes = 0
+
+[animations]
+enabled = true
+speed = 2.0
+curve = "ease-out"
+
+[workspace]
+count = 4
+dynamic = true

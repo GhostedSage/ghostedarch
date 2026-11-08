@@ -1,0 +1,66 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║                       GHOSTED ARCH — BAR CONFIGURATION                     ║
+# ║                                                                            ║
+# ║  Detailed configuration for the Ghosted status bar.                        ║
+# ║  Basic bar settings (height, position, modules) are in config.toml.        ║
+# ║  This file contains per-module configuration.                              ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+
+# ── Clock Module ──────────────────────────────────────────────────────────────
+
+[clock]
+format_24h = true
+show_seconds = false
+show_date = false
+timezone = ""                # Empty = system timezone
+
+# ── Window Title Module ───────────────────────────────────────────────────────
+
+[window_title]
+max_length = 40              # Truncate titles longer than this
+show_app_icon = true
+fallback_text = "Ghosted Arch"
+
+# ── Launcher Module ──────────────────────────────────────────────────────────
+
+[launcher]
+icon = "ghosted"             # Icon name or path
+tooltip = "Applications"
+
+# ── Network Module ────────────────────────────────────────────────────────────
+
+[network]
+show_speed = false
+show_ssid = true
+icon_wifi = "󰤨"
+icon_ethernet = "󰈀"
+icon_disconnected = "󰤮"
+
+# ── Audio Module ──────────────────────────────────────────────────────────────
+
+[audio]
+show_percentage = true
+icon_high = "󰕾"
+icon_medium = "󰖀"
+icon_low = "󰕿"
+icon_muted = "󰝟"
+
+# ── Battery Module ────────────────────────────────────────────────────────────
+
+[battery]
+show_percentage = true
+warn_level = 20              # Show warning colour below this %
+critical_level = 10          # Show critical colour below this %
+icon_charging = "󰂄"
+icon_full = "󰁹"
+icon_good = "󰂀"
+icon_low = "󰁻"
+icon_critical = "󰂃"
+
+# ── Workspace Indicator (optional module) ────────────────────────────────────
+
+[workspaces]
+show_numbers = true
+show_icons = false
+active_indicator = "●"
+inactive_indicator = "○"

@@ -1,0 +1,24 @@
+# Ghosted Profile: Default
+#
+# The standard Ghosted desktop experience — balanced aesthetics and performance.
+# This is what ships out of the box.
+
+[appearance]
+border_size = 2
+rounding = 12
+gaps_in = 5
+gaps_out = 10
+
+[appearance.blur]
+enabled = true
+radius = 8
+passes = 2
+
+[animations]
+enabled = true
+speed = 1.0
+curve = "ease-out"
+
+[workspace]
+count = 9
+dynamic = true

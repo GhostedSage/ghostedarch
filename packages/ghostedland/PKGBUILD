@@ -1,13 +1,15 @@
 # Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+#
+# Self-contained platform package — all files are bundled alongside this PKGBUILD.
+
 pkgname=ghostedland
 pkgver=0.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="GhostedLand — Complete Unified Wayland Desktop Platform for Ghosted Arch"
 arch=('any')
 url="https://github.com/BishalPoudel-1/ghostedarch-tools"
 license=('GPL-3.0')
 
-# Installing this meta-package automatically pulls in the entire Ghosted desktop suite
 depends=(
     'ghosted-compositor'
     'ghosted-bar'
@@ -18,9 +20,45 @@ depends=(
     'xdg-desktop-portal-hyprland'
     'xdg-desktop-portal-gtk'
 )
+options=('!debug' '!strip' '!buildflags')
+
+source=(
+    "start-ghostedland.sh"
+    "ghostedland.desktop"
+    "ghostedland-hwdetect.sh"
+    "launch-nested.sh"
+)
+sha256sums=(
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+)
 
 package() {
-    install -dm755 "$pkgdir/usr/share/doc/ghostedland"
-    echo "GhostedLand desktop meta-package" > "$pkgdir/usr/share/doc/ghostedland/README"
-}
+    # Install session launchers
+    install -Dm755 "$srcdir/start-ghostedland.sh" "$pkgdir/usr/bin/start-ghostedland"
+    ln -sf start-ghostedland "$pkgdir/usr/bin/ghostedland"
+    install -Dm755 "$srcdir/launch-nested.sh" "$pkgdir/usr/bin/ghostedland-nested"
+    install -Dm755 "$srcdir/ghostedland-hwdetect.sh" "$pkgdir/usr/bin/ghostedland-hwdetect"
 
+    # Install Wayland session desktop entry
+    install -dm755 "$pkgdir/usr/share/wayland-sessions"
+    sed "s|^Exec=.*|Exec=/usr/bin/start-ghostedland|" "$srcdir/ghostedland.desktop" > "$pkgdir/usr/share/wayland-sessions/ghostedland.desktop"
+    chmod 644 "$pkgdir/usr/share/wayland-sessions/ghostedland.desktop"
+
+    # Install default configurations
+    install -dm755 "$pkgdir/usr/share/ghostedland"
+    install -m644 "$startdir/config/ghostedland.lua" "$pkgdir/usr/share/ghostedland/ghostedland.lua"
+    install -m644 "$startdir/config/ghostedland.conf" "$pkgdir/usr/share/ghostedland/ghostedland.conf"
+
+    # Install portal configuration
+    install -dm755 "$pkgdir/usr/share/xdg-desktop-portal"
+    install -m644 "$startdir/config/ghostedland-portals.conf" "$pkgdir/usr/share/xdg-desktop-portal/ghostedland-portals.conf"
+
+    # Install wallpapers
+    if [ -d "$startdir/wallpapers" ]; then
+        install -dm755 "$pkgdir/usr/share/ghostedland/wallpapers"
+        install -m644 "$startdir/wallpapers"/* "$pkgdir/usr/share/ghostedland/wallpapers/"
+    fi
+}

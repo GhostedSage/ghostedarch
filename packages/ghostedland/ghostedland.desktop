@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=GhostedLand
+Comment=GhostedLand Wayland Desktop Platform Session
+Exec=start-ghostedland
+Type=Application
+DesktopNames=GhostedLand;Ghostedland;
+Keywords=Wayland;Ghosted;GhostedLand;Desktop;

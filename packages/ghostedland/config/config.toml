@@ -1,0 +1,74 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║                     GHOSTED ARCH — MASTER CONFIGURATION                    ║
+# ║                                                                            ║
+# ║  This is the source of truth for the Ghosted desktop platform.             ║
+# ║  Every component reads from this file. Ghosted Settings edits it.          ║
+# ║  ghostedctl can also read/write individual keys.                           ║
+# ║                                                                            ║
+# ║  Location: ~/.config/ghosted/config.toml                                   ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+
+# ── Appearance ────────────────────────────────────────────────────────────────
+
+[appearance]
+border_size = 2          # Window border width (px)               [0–20]
+rounding = 12            # Window corner radius (px)              [0–100]
+gaps_in = 5              # Gap between adjacent windows (px)      [0–100]
+gaps_out = 10            # Gap between windows and screen edge    [0–200]
+
+[appearance.blur]
+enabled = true           # Enable background blur
+radius = 8               # Blur radius                            [0–50]
+passes = 2               # Blur passes (higher = smoother)        [0–10]
+
+# ── Animations ────────────────────────────────────────────────────────────────
+
+[animations]
+enabled = true           # Enable window/workspace animations
+speed = 1.0              # Speed multiplier (1.0 = normal)        [0.1–10.0]
+curve = "ease-out"       # Default animation curve
+
+# ── Workspace ─────────────────────────────────────────────────────────────────
+
+[workspace]
+count = 9                # Number of static workspaces            [1–50]
+dynamic = true           # Allow creating workspaces beyond count
+
+# ── Input ─────────────────────────────────────────────────────────────────────
+
+[input]
+focus_follows_mouse = false   # Focus window under pointer without clicking
+natural_scroll = false        # Reverse scroll direction
+keyboard_layout = "us"        # Keyboard layout
+repeat_delay = 300            # Key repeat delay (ms)             [0–2000]
+repeat_rate = 50              # Key repeat rate (chars/sec)       [0–200]
+
+# ── Theme ─────────────────────────────────────────────────────────────────────
+
+[theme]
+name = "ghost"
+background = "#0d0d0d"
+foreground = "#e0e0e0"
+accent = "#7b68ee"
+border = "#2a2a2a"
+surface = "#1a1a1a"
+surface_variant = "#242424"
+error = "#ff5555"
+warning = "#f1c40f"
+success = "#50fa7b"
+info = "#8be9fd"
+
+# ── Wallpaper ─────────────────────────────────────────────────────────────────
+
+[wallpaper]
+desktop = ""             # Desktop wallpaper image path
+login = ""               # Login screen wallpaper path
+
+# ── Bar ───────────────────────────────────────────────────────────────────────
+
+[bar]
+height = 36              # Bar height (px)                        [16–100]
+position = "top"         # "top" or "bottom"
+left_modules = ["launcher", "clock"]
+center_modules = ["window_title"]
+right_modules = ["network", "audio", "battery"]

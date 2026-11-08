@@ -1,0 +1,23 @@
+# Ghosted Profile: Gaming
+#
+# Maximum performance — all visual effects disabled. Every frame counts.
+
+[appearance]
+border_size = 1
+rounding = 0
+gaps_in = 0
+gaps_out = 0
+
+[appearance.blur]
+enabled = false
+radius = 0
+passes = 0
+
+[animations]
+enabled = false
+speed = 1.0
+curve = "linear"
+
+[workspace]
+count = 3
+dynamic = false
