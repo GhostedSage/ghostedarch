@@ -1,5 +1,49 @@
 [
   {
+    "name": "ghosted-bar",
+    "version": "0.1.0-1",
+    "description": "Modern, high-performance Wayland status bar and Control Center for Ghosted Arch",
+    "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
+    "size": "11 MB",
+    "license": "GPL-3.0",
+    "dependencies": ["wayland"],
+    "filename": "ghosted-bar-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghosted-greeter",
+    "version": "0.1.0-1",
+    "description": "Modern, hardware-accelerated Qt6/QML & Rust graphical login manager for greetd",
+    "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
+    "size": "4 MB",
+    "license": "GPL-3.0",
+    "dependencies": ["greetd"],
+    "filename": "ghosted-greeter-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghosted-settings",
+    "version": "0.1.0-1",
+    "description": "GTK4 and libadwaita desktop settings application for Ghosted Arch",
+    "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
+    "size": "24 MB",
+    "license": "GPL-3.0",
+    "dependencies": ["gtk4"],
+    "filename": "ghosted-settings-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghosted-wallpaper",
+    "version": "0.1.0-1",
+    "description": "High-performance Wayland multi-output wallpaper daemon for Ghosted Arch",
+    "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
+    "size": "3 MB",
+    "license": "GPL-3.0",
+    "dependencies": ["wayland"],
+    "filename": "ghosted-wallpaper-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
     "name": "ghostedarch-keyring",
     "version": "2026.06.01-1",
     "description": "GhostedArch Linux official signing keyring",
@@ -41,5 +85,71 @@
     "license": "custom",
     "dependencies": [],
     "filename": "ghostedarch-wallpaper-1.0.0-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostedctl",
+    "version": "0.1.0-1",
+    "description": "Unified command-line interface and diagnostic tool for Ghosted Arch",
+    "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
+    "size": "3 MB",
+    "license": "GPL-3.0",
+    "dependencies": ["glibc"],
+    "filename": "ghostedctl-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostedland",
+    "version": "0.1.0-1",
+    "description": "GhostedLand — Complete Unified Wayland Desktop Platform for Ghosted Arch",
+    "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
+    "size": "0 KB",
+    "license": "GPL-3.0",
+    "dependencies": ["ghosted-bar"],
+    "filename": "ghostedland-0.1.0-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostednotes",
+    "version": "0.1.0-1",
+    "description": "Beautiful visual note-taking app built with Tauri",
+    "url": "https://github.com/ghostedsage/ghostednotes",
+    "size": "9 MB",
+    "license": "MIT",
+    "dependencies": ["webkit2gtk-4.1"],
+    "filename": "ghostednotes-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostednotes-debug",
+    "version": "0.1.0-1",
+    "description": "Detached debugging symbols for ghostednotes",
+    "url": "https://github.com/ghostedsage/ghostednotes",
+    "size": "2 MB",
+    "license": "MIT",
+    "dependencies": [],
+    "filename": "ghostednotes-debug-0.1.0-1-x86_64.pkg.tar.zst"
+  }
+,
+  {
+    "name": "ghostedsetting",
+    "version": "1.0.0-1",
+    "description": "Ghosted Arch Setting, a Hyprland control center for GhostedArch",
+    "url": "https://github.com/GhostedSage/ghostedarch",
+    "size": "1 MB",
+    "license": "MIT",
+    "dependencies": ["python"],
+    "filename": "ghostedsetting-1.0.0-1-any.pkg.tar.zst"
+  }
+,
+  {
+    "name": "tux-warden",
+    "version": "1.0.0-1",
+    "description": "Linux Security Operations Center — virus scanning, rootkit detection, UFW firewall, and system log auditing",
+    "url": "https://github.com/BishalPoudel-1/tux-warden",
+    "size": "15 MB",
+    "license": "MIT",
+    "dependencies": ["webkit2gtk-4.1"],
+    "filename": "tux-warden-1.0.0-1-x86_64.pkg.tar.zst"
   }
 ]

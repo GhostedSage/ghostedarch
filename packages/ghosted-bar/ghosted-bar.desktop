@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Ghosted Bar
+Comment=Modern, lightweight Wayland status bar for Ghosted Arch Linux
+Exec=ghosted-bar
+Icon=utilities-system-monitor
+Terminal=false
+Categories=System;Utility;
+NoDisplay=true

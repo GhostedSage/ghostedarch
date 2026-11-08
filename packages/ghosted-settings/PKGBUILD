@@ -1,4 +1,7 @@
 # Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+#
+# Self-contained binary package — all files are bundled alongside this PKGBUILD.
+
 pkgname=ghosted-settings
 pkgver=0.1.0
 pkgrel=1
@@ -19,32 +22,20 @@ depends=(
     'bluez'
     'networkmanager'
 )
-makedepends=(
-    'cargo'
-    'git'
-    'pkgconf'
-)
-source=("git+https://github.com/BishalPoudel-1/ghostedarch-tools.git#branch=main")
-sha256sums=('SKIP')
+options=('!debug' '!strip' '!buildflags')
 
-build() {
-    cd "$srcdir/ghostedarch-tools/ghostedland"
-    export CARGO_TARGET_DIR="target"
-    # Build ONLY ghosted-settings
-    cargo build --release --locked -p ghosted-settings
-}
+source=(
+    "ghosted-settings"
+    "org.ghosted.settings.desktop"
+)
+sha256sums=(
+    'SKIP'
+    'SKIP'
+)
 
 package() {
-    cd "$srcdir/ghostedarch-tools/ghostedland"
-
-    # Install main binary
-    install -Dm755 "target/release/ghosted-settings" "$pkgdir/usr/bin/ghosted-settings"
-
-    # Symlink ghosted-setting -> ghosted-settings for convenience
+    install -Dm755 "$srcdir/ghosted-settings" "$pkgdir/usr/bin/ghosted-settings"
     ln -s ghosted-settings "$pkgdir/usr/bin/ghosted-setting"
 
-    # Install desktop launcher entry
-    if [ -f "crates/ghosted-settings/org.ghosted.settings.desktop" ]; then
-        install -Dm644 "crates/ghosted-settings/org.ghosted.settings.desktop" "$pkgdir/usr/share/applications/org.ghosted.settings.desktop"
-    fi
+    install -Dm644 "$srcdir/org.ghosted.settings.desktop" "$pkgdir/usr/share/applications/org.ghosted.settings.desktop"
 }

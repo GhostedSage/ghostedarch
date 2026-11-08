@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Terminal",
+    "icon": "",
+    "command": "kitty"
+  },
+  {
+    "name": "Browser",
+    "icon": "",
+    "command": "firefox"
+  },
+  {
+    "name": "Files",
+    "icon": "",
+    "command": "thunar"
+  },
+  {
+    "name": "Editor",
+    "icon": "",
+    "command": "code"
+  }
+]

@@ -1,0 +1,33 @@
+# Ghosted Greeter Configuration
+# Location: /etc/ghosted/greeter.toml or ~/.config/ghosted/greeter.toml
+
+[general]
+brand_name = "Ghosted Arch"
+show_shutdown = true
+show_reboot = true
+monitor_mode = "all" # "all" or "primary"
+
+[clock]
+format_24h = true
+stacked = true        # Stack hours and minutes: 21 \n 57
+show_date = true
+date_format = "%A, %B %-d"
+
+[appearance]
+background_path = "assets/ghosted.jpeg"
+logo_path = "assets/icon.svg"
+logo_size = 96
+time_page_dim = 0.60
+auth_page_dim = 0.85
+blur_radius = 32
+font_family = "Inter, sans-serif"
+clock_font_size = 150
+brand_font_size = 24
+
+[animations]
+transition_duration_ms = 450
+shake_duration_ms = 380
+
+[session]
+default_session = "GhostedLand"
+session_command = ["/usr/share/ghosted-greeter/scripts/start-session.sh", "start-ghostedland"]

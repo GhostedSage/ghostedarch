@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Ghosted Settings
+GenericName=System Settings
+Comment=Configure appearance, displays, sound, network, and more on GhostedLand
+Exec=ghosted-settings
+Icon=preferences-system
+Terminal=false
+StartupNotify=true
+StartupWMClass=org.ghosted.settings
+Categories=Settings;DesktopSettings;HardwareSettings;
+Keywords=Settings;Preferences;Ghosted;Theme;Appearance;Wallpaper;Borders;Gaps;Blur;Animations;Display;Monitor;Brightness;Sound;Audio;Volume;Network;Wifi;Bluetooth;Battery;Power;Keyboard;Mouse;Timezone;Default Apps;

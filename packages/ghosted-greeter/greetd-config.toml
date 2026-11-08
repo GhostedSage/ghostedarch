@@ -1,0 +1,23 @@
+# /etc/greetd/config.toml
+# Ghosted Greeter Configuration for greetd
+
+[terminal]
+# The VT to run on
+vt = 1
+
+# If false, greetd will not forcibly switch back to VT1 if you switch to another TTY (e.g. Ctrl+Alt+F2)
+switch = false
+
+[default_session]
+# Silent wrapper for cage + ghosted-greeter (prevents cursor and logs on TTY)
+command = "/usr/share/ghosted-greeter/scripts/start-greeter.sh"
+#
+# Option B: With GhostedLand kiosk / greeter mode
+# command = "ghostedland-compositor --config /etc/ghosted/ghostedland-greeter.conf"
+
+#
+# Option C: Direct Wayland greeter (requires an existing display server)
+# command = "ghosted-greeter"
+
+# The user to run the greeter as (typically 'greeter')
+user = "greeter"

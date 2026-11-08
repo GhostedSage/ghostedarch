@@ -1,0 +1,14 @@
+// /etc/polkit-1/rules.d/40-ghosted-greeter.rules
+// Allow greeter user to reboot and shutdown without password prompt
+
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.freedesktop.login1.power-off" ||
+         action.id == "org.freedesktop.login1.power-off-multiple-sessions" ||
+         action.id == "org.freedesktop.login1.power-off-ignore-inhibit" ||
+         action.id == "org.freedesktop.login1.reboot" ||
+         action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+         action.id == "org.freedesktop.login1.reboot-ignore-inhibit") &&
+        subject.user == "greeter") {
+        return polkit.Result.YES;
+    }
+});

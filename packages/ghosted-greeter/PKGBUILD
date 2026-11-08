@@ -1,4 +1,7 @@
 # Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+#
+# Self-contained binary package — all files are bundled alongside this PKGBUILD.
+
 pkgname=ghosted-greeter
 pkgver=0.1.0
 pkgrel=1
@@ -17,45 +20,36 @@ depends=(
     'systemd'
     'polkit'
 )
-makedepends=(
-    'cargo'
-    'git'
-    'pkgconf'
-    'gcc'
-)
 backup=(
     'etc/ghosted/greeter.toml'
     'etc/greetd/config.toml'
 )
-source=("git+https://github.com/BishalPoudel-1/ghostedarch-tools.git#branch=main")
-sha256sums=('SKIP')
+options=('!debug' '!strip' '!buildflags')
 
-build() {
-    cd "$srcdir/ghostedarch-tools/ghostedland/ghosted-loginmanager"
-    cargo build --release --locked
-}
+source=(
+    "ghosted-greeter"
+    "ghosted-greeter.toml"
+    "greetd-config.toml"
+    "40-ghosted-greeter.rules"
+    "20-quiet-printk.conf"
+)
+sha256sums=(
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+)
 
 package() {
-    cd "$srcdir/ghostedarch-tools/ghostedland/ghosted-loginmanager"
+    install -Dm755 "$srcdir/ghosted-greeter" "$pkgdir/usr/bin/ghosted-greeter"
 
-    # Install binary
-    install -Dm755 "target/release/ghosted-greeter" "$pkgdir/usr/bin/ghosted-greeter"
-
-    # Install QML, assets, and session launcher scripts
     install -dm755 "$pkgdir/usr/share/ghosted-greeter"
-    cp -r assets qml scripts "$pkgdir/usr/share/ghosted-greeter/"
+    cp -r "$startdir/assets" "$startdir/qml" "$startdir/scripts" "$pkgdir/usr/share/ghosted-greeter/"
     chmod -R a+rx "$pkgdir/usr/share/ghosted-greeter"
 
-    # Install default greeter configuration
-    install -Dm644 "ghosted-greeter.toml" "$pkgdir/etc/ghosted/greeter.toml"
-
-    # Install greetd daemon configuration
-    install -Dm644 "packaging/greetd-config.toml" "$pkgdir/etc/greetd/config.toml"
-
-    # Install polkit rule for unprivileged reboot/shutdown from greeter
-    install -Dm644 "packaging/40-ghosted-greeter.rules" "$pkgdir/etc/polkit-1/rules.d/40-ghosted-greeter.rules"
-
-    # Install silent boot console settings
-    install -Dm644 "packaging/20-quiet-printk.conf" "$pkgdir/etc/sysctl.d/20-quiet-printk.conf"
+    install -Dm644 "$srcdir/ghosted-greeter.toml" "$pkgdir/etc/ghosted/greeter.toml"
+    install -Dm644 "$srcdir/greetd-config.toml" "$pkgdir/etc/greetd/config.toml"
+    install -Dm644 "$srcdir/40-ghosted-greeter.rules" "$pkgdir/etc/polkit-1/rules.d/40-ghosted-greeter.rules"
+    install -Dm644 "$srcdir/20-quiet-printk.conf" "$pkgdir/etc/sysctl.d/20-quiet-printk.conf"
 }
-

@@ -1,4 +1,8 @@
 # Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+#
+# Self-contained binary package — all files are bundled alongside this PKGBUILD.
+# No internet access or Rust toolchain required at build time.
+
 pkgname=ghosted-bar
 pkgver=0.1.0
 pkgrel=1
@@ -18,37 +22,23 @@ depends=(
     'bluez'
     'networkmanager'
 )
-makedepends=(
-    'cargo'
-    'git'
-    'pkgconf'
-)
-source=("git+https://github.com/BishalPoudel-1/ghostedarch-tools.git#branch=main")
-sha256sums=('SKIP')
+options=('!debug' '!strip' '!buildflags')
 
-build() {
-    cd "$srcdir/ghostedarch-tools/ghostedland"
-    export CARGO_TARGET_DIR="target"
-    # Build ONLY ghosted-bar
-    cargo build --release --locked -p ghosted-bar
-}
+source=(
+    "ghosted-bar"
+    "ghosted-bar.desktop"
+    "pinned.json"
+)
+sha256sums=(
+    'SKIP'
+    'SKIP'
+    'SKIP'
+)
 
 package() {
-    cd "$srcdir/ghostedarch-tools/ghostedland"
+    install -Dm755 "$srcdir/ghosted-bar" "$pkgdir/usr/bin/ghosted-bar"
+    install -Dm644 "$srcdir/ghosted-bar.desktop" "$pkgdir/usr/share/applications/ghosted-bar.desktop"
 
-    # Install main binary
-    install -Dm755 "target/release/ghosted-bar" "$pkgdir/usr/bin/ghosted-bar"
-
-    # Install desktop shortcut
-    install -Dm644 "ghosted-bar/assets/ghosted-bar.desktop" "$pkgdir/usr/share/applications/ghosted-bar.desktop"
-
-    # Install template configuration and asset files
     install -dm755 "$pkgdir/usr/share/ghosted-bar"
-    if [ -f "ghosted-bar/assets/pinned.json" ]; then
-        install -m644 "ghosted-bar/assets/pinned.json" "$pkgdir/usr/share/ghosted-bar/pinned.json.example"
-    fi
-    if [ -f "ghosted-bar/assets/colors.json" ]; then
-        install -m644 "ghosted-bar/assets/colors.json" "$pkgdir/usr/share/ghosted-bar/colors.json.example"
-    fi
+    install -m644 "$srcdir/pinned.json" "$pkgdir/usr/share/ghosted-bar/pinned.json.example"
 }
-
