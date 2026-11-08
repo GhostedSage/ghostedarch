@@ -1,7 +1,7 @@
 # Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
 pkgname=ghostedland
 pkgver=0.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="GhostedLand — Complete Unified Wayland Desktop Platform for Ghosted Arch"
 arch=('any')
 url="https://github.com/BishalPoudel-1/ghostedarch-tools"
@@ -9,6 +9,7 @@ license=('GPL-3.0')
 
 # Installing this meta-package automatically pulls in the entire Ghosted desktop suite
 depends=(
+    'ghosted-compositor'
     'ghosted-bar'
     'ghosted-greeter'
     'ghosted-settings'

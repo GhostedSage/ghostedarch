@@ -1,0 +1,34 @@
+# Maintainer: Bishal Poudel <bishalpoudel884@gmail.com>
+pkgname=ghosted-compositor
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Native, high-performance Wayland compositor for GhostedLand"
+arch=('x86_64')
+url="https://github.com/BishalPoudel-1/ghostedarch-tools"
+license=('GPL-3.0')
+
+depends=(
+    'wayland'
+    'vulkan-icd-loader'
+    'libxkbcommon'
+    'libinput'
+    'mesa'
+    'pixman'
+    'libseat'
+)
+options=('!debug' '!strip' '!buildflags')
+
+source=(
+    "ghosted-compositor"
+)
+sha256sums=(
+    'SKIP'
+)
+
+package() {
+    # Install main binary
+    install -Dm755 "$srcdir/ghosted-compositor" "$pkgdir/usr/bin/ghosted-compositor"
+
+    # Symlink ghostedland-compositor -> ghosted-compositor for compatibility
+    ln -sf ghosted-compositor "$pkgdir/usr/bin/ghostedland-compositor"
+}
