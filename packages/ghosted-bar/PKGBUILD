@@ -5,7 +5,7 @@
 
 pkgname=ghosted-bar
 pkgver=0.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Modern, high-performance Wayland status bar and Control Center for Ghosted Arch"
 arch=('x86_64')
 url="https://github.com/BishalPoudel-1/ghostedarch-tools"
