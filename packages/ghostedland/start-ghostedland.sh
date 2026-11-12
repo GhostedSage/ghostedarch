@@ -12,33 +12,25 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BIN_DIR="${SCRIPT_DIR}/target/debug"
-COMPOSITOR_BUILD_DIR="${SCRIPT_DIR}/compositor/ghosted-compositor/build"
-if [ -n "${GHOSTEDLAND_CONFIG:-}" ] && [ -f "${GHOSTEDLAND_CONFIG}" ]; then
-    CONFIG_FILE="${GHOSTEDLAND_CONFIG}"
-elif [ -n "${GHOSTED_CONFIG:-}" ] && [ -f "${GHOSTED_CONFIG}" ]; then
-    CONFIG_FILE="${GHOSTED_CONFIG}"
-elif [ -f "${HOME}/.config/ghostedland/ghostedland.lua" ]; then
-    CONFIG_FILE="${HOME}/.config/ghostedland/ghostedland.lua"
-elif [ -f "${HOME}/.local/share/ghostedland/ghostedland.lua" ]; then
-    CONFIG_FILE="${HOME}/.local/share/ghostedland/ghostedland.lua"
-elif [ -f "${SCRIPT_DIR}/config/ghostedland.lua" ]; then
-    CONFIG_FILE="${SCRIPT_DIR}/config/ghostedland.lua"
-elif [ -f "/usr/local/share/ghostedland/ghostedland.lua" ]; then
-    CONFIG_FILE="/usr/local/share/ghostedland/ghostedland.lua"
-elif [ -f "/usr/share/ghostedland/ghostedland.lua" ]; then
-    CONFIG_FILE="/usr/share/ghostedland/ghostedland.lua"
-elif [ -f "${SCRIPT_DIR}/config/ghostedland.conf" ]; then
-    CONFIG_FILE="${SCRIPT_DIR}/config/ghostedland.conf"
-fi
+
+# Optional config override: a config.toml file or the directory holding it.
+# Without it the compositor reads ~/.config/ghosted/config.toml.
+CONFIG_ARGS=()
+for candidate in "${GHOSTEDLAND_CONFIG:-}" "${GHOSTED_CONFIG:-}"; do
+    if [ -n "${candidate}" ] && { [ -d "${candidate}" ] || [[ "${candidate}" == *.toml && -f "${candidate}" ]]; }; then
+        CONFIG_ARGS=(--config "${candidate}")
+        break
+    fi
+done
 
 # Record session launch milestone if not already provided by greeter
 export GHOSTED_SESSION_START_MS="${GHOSTED_SESSION_START_MS:-$(date +%s%3N)}"
 export GHOSTED_AUTH_TIMESTAMP_MS="${GHOSTED_AUTH_TIMESTAMP_MS:-${GHOSTED_SESSION_START_MS}}"
 
-export XDG_CURRENT_DESKTOP="GhostedLand:Hyprland"
+export XDG_CURRENT_DESKTOP="GhostedLand"
 export XDG_SESSION_DESKTOP="GhostedLand"
 export XDG_SESSION_TYPE="wayland"
-export PATH="${COMPOSITOR_BUILD_DIR}:${BIN_DIR}:${SCRIPT_DIR}/target/release:${SCRIPT_DIR}/target/debug:${HOME}/.local/bin:/usr/local/bin:${PATH}"
+export PATH="${SCRIPT_DIR}/target/release:${BIN_DIR}:${SCRIPT_DIR}/target/debug:${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 # Per-user overrides first (KEY=value lines), so they always win over detection.
 SESSION_ENV="${HOME}/.config/ghostedland/session.env"
@@ -91,18 +83,28 @@ if [ -f "${CRASH_LOG}" ]; then
 fi
 echo "${NOW}" >> "${CRASH_LOG}"
 
-if [ -x "${COMPOSITOR_BUILD_DIR}/ghostedland-compositor" ]; then
-    exec "${COMPOSITOR_BUILD_DIR}/ghostedland-compositor" ${CONFIG_FILE:+-c "$CONFIG_FILE"} "${SAFE_MODE_ARGS[@]}" "$@"
-elif command -v Hyprland >/dev/null 2>&1; then
-    exec Hyprland ${CONFIG_FILE:+-c "$CONFIG_FILE"} "${SAFE_MODE_ARGS[@]}" "$@"
-elif command -v hyprland >/dev/null 2>&1; then
-    exec hyprland ${CONFIG_FILE:+-c "$CONFIG_FILE"} "${SAFE_MODE_ARGS[@]}" "$@"
-elif command -v ghosted-compositor >/dev/null 2>&1; then
-    exec ghosted-compositor ${CONFIG_FILE:+-c "$CONFIG_FILE"} "${SAFE_MODE_ARGS[@]}" "$@"
-elif command -v ghostedland-compositor >/dev/null 2>&1; then
-    exec ghostedland-compositor ${CONFIG_FILE:+-c "$CONFIG_FILE"} "${SAFE_MODE_ARGS[@]}" "$@"
-else
-    echo "[GhostedLand Launcher] ERROR: No Wayland compositor found (Hyprland or ghosted-compositor)!" >&2
+# Self-heal the per-user portal config: one seeded by the old Hyprland-based
+# session names the hyprland backend, which cannot work here and would break
+# screen sharing. Replace it with the shipped config (keeping a backup).
+USER_PORTALS="${XDG_CONFIG_HOME:-${HOME}/.config}/xdg-desktop-portal/ghostedland-portals.conf"
+if [ -f "${USER_PORTALS}" ] && grep -qi "hyprland" "${USER_PORTALS}" 2>/dev/null; then
+    for shipped in "/usr/share/xdg-desktop-portal/ghostedland-portals.conf" \
+                   "/usr/local/share/xdg-desktop-portal/ghostedland-portals.conf" \
+                   "${SCRIPT_DIR}/config/ghostedland-portals.conf"; do
+        if [ -f "${shipped}" ] && ! grep -qi "hyprland" "${shipped}" 2>/dev/null; then
+            cp -f "${USER_PORTALS}" "${USER_PORTALS}.bak" 2>/dev/null
+            cp -f "${shipped}" "${USER_PORTALS}" 2>/dev/null \
+                && echo "[GhostedLand Launcher] Migrated portal config to the wlr backend." >&2
+            break
+        fi
+    done
+fi
+
+# GhostedLand runs on its own native compositor; no other compositor is needed.
+if ! command -v ghosted-compositor >/dev/null 2>&1; then
+    echo "[GhostedLand Launcher] ERROR: ghosted-compositor not found in PATH." >&2
+    echo "  Build it with: cargo build --release -p ghosted-compositor" >&2
     exit 1
 fi
 
+exec ghosted-compositor --backend drm "${CONFIG_ARGS[@]}" "${SAFE_MODE_ARGS[@]}" "$@"

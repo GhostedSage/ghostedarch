@@ -9,6 +9,9 @@ export GHOSTED_AUTH_TIMESTAMP_MS=$(date +%s%3N)
 printf '\033[2J\033[H\033[?25l'
 setterm -cursor off -blank 0 2>/dev/null || true
 
+# Prefer a locally installed GhostedLand over an older packaged copy in /usr/bin.
+export PATH="/usr/local/bin:${PATH}"
+
 # 3. Determine session command (preferring start-ghostedland)
 if [ $# -gt 0 ]; then
     SESSION_CMD=("$@")

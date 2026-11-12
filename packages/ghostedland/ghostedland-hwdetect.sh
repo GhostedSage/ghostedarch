@@ -11,7 +11,7 @@
 # Usage: ghostedland-hwdetect [--report | --env | --packages | --vars]
 #
 # Every value can be overridden: variables already set in the environment
-# (e.g. AQ_DRM_DEVICES in ~/.config/ghostedland/session.env) are never replaced.
+# (e.g. GHOSTED_DRM_DEVICE in ~/.config/ghostedland/session.env) are never replaced.
 
 set -u
 
@@ -165,19 +165,15 @@ emit_env() {
         printf '[ -n "${%s:-}" ] || export %s=%q\n' "$1" "$1" "$2"
     }
 
-    set_default XDG_CURRENT_DESKTOP "GhostedLand:Hyprland"
+    set_default XDG_CURRENT_DESKTOP "GhostedLand"
     set_default MOZ_ENABLE_WAYLAND 1
     set_default ELECTRON_OZONE_PLATFORM_HINT auto
     set_default QT_QPA_PLATFORM "wayland;xcb"
 
-    # Multi-GPU: render on the primary GPU, keep the others for their outputs
-    # (e.g. HDMI wired to the dGPU on hybrid laptops).
+    # Multi-GPU: tell ghosted-compositor which GPU drives the session.
+    # (It uses a single GPU; outputs wired only to another GPU stay dark.)
     if [[ ${GPU_COUNT} -gt 1 && ${PRIMARY} -ge 0 ]]; then
-        local devices="/dev/dri/${GPU_CARDS[$PRIMARY]}"
-        for i in "${!GPU_CARDS[@]}"; do
-            [[ $i -eq ${PRIMARY} ]] || devices+=":/dev/dri/${GPU_CARDS[$i]}"
-        done
-        set_default AQ_DRM_DEVICES "${devices}"
+        set_default GHOSTED_DRM_DEVICE "/dev/dri/${GPU_CARDS[$PRIMARY]}"
     fi
 
     # NVIDIA proprietary driver as the primary renderer.
@@ -189,7 +185,7 @@ emit_env() {
 
     # Virtual machines: virtual GPUs often lack atomic modesetting.
     if [[ ${IS_VM} -eq 1 ]]; then
-        set_default AQ_NO_ATOMIC 1
+        set_default SMITHAY_USE_LEGACY 1
     fi
 }
 

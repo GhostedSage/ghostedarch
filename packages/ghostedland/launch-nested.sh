@@ -8,17 +8,17 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BIN_DIR="${SCRIPT_DIR}/target/debug"
-if [ -n "${GHOSTED_CONFIG:-}" ] && [ -f "${GHOSTED_CONFIG}" ]; then
+
+# Optional config override: a config.toml file or the directory holding it.
+CONFIG_ARGS=()
+CONFIG_FILE="${HOME}/.config/ghosted/config.toml"
+if [ -n "${GHOSTED_CONFIG:-}" ] && { [ -d "${GHOSTED_CONFIG}" ] || [[ "${GHOSTED_CONFIG}" == *.toml && -f "${GHOSTED_CONFIG}" ]]; }; then
     CONFIG_FILE="${GHOSTED_CONFIG}"
-elif [ -f "${SCRIPT_DIR}/config/ghostedland.lua" ]; then
-    CONFIG_FILE="${SCRIPT_DIR}/config/ghostedland.lua"
-elif [ -f "${SCRIPT_DIR}/config/ghostedland.conf" ]; then
-    CONFIG_FILE="${SCRIPT_DIR}/config/ghostedland.conf"
+    CONFIG_ARGS=(--config "${GHOSTED_CONFIG}")
 fi
 
 # Ensure all Ghosted binaries are in PATH
-COMPOSITOR_BUILD_DIR="${SCRIPT_DIR}/compositor/ghosted-compositor/build"
-export PATH="${COMPOSITOR_BUILD_DIR}:${BIN_DIR}:${SCRIPT_DIR}/target/release:${SCRIPT_DIR}/target/debug:${HOME}/.local/bin:/usr/local/bin:${PATH}"
+export PATH="${SCRIPT_DIR}/target/release:${BIN_DIR}:${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 # Ensure config directory exists
 mkdir -p "${HOME}/.config/ghosted"
@@ -38,20 +38,12 @@ echo "   • Super + M /     :"
 echo "     Super+Shift+Q   : Exit nested session"
 echo "=================================================="
 
-# Run GhostedLand compositor with custom Ghosted configuration
+# Run the GhostedLand compositor in a window
 
-if [ -x "${SCRIPT_DIR}/target/release/ghosted-compositor" ]; then
-    exec "${SCRIPT_DIR}/target/release/ghosted-compositor" --nested ${CONFIG_FILE:+-c "$CONFIG_FILE"}
-elif [ -x "${SCRIPT_DIR}/target/debug/ghosted-compositor" ]; then
-    exec "${SCRIPT_DIR}/target/debug/ghosted-compositor" --nested ${CONFIG_FILE:+-c "$CONFIG_FILE"}
-elif command -v ghosted-compositor >/dev/null 2>&1; then
-    exec ghosted-compositor --nested ${CONFIG_FILE:+-c "$CONFIG_FILE"}
-elif [ -x "${COMPOSITOR_BUILD_DIR}/ghostedland-compositor" ]; then
-    exec "${COMPOSITOR_BUILD_DIR}/ghostedland-compositor" -c "${CONFIG_FILE}"
-elif command -v ghostedland-compositor >/dev/null 2>&1; then
-    exec ghostedland-compositor -c "${CONFIG_FILE}"
-else
+if ! command -v ghosted-compositor >/dev/null 2>&1; then
     echo "[GhostedLand Launcher] ERROR: ghosted-compositor binary not found!" >&2
+    echo "  Build it with: cargo build -p ghosted-compositor" >&2
     exit 1
 fi
 
+exec ghosted-compositor --nested "${CONFIG_ARGS[@]}" "$@"

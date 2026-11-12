@@ -4,7 +4,7 @@
 
 pkgname=ghosted-greeter
 pkgver=0.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Modern, hardware-accelerated Qt6/QML & Rust graphical login manager for greetd"
 arch=('x86_64')
 url="https://github.com/BishalPoudel-1/ghostedarch-tools"

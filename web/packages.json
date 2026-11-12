@@ -1,57 +1,57 @@
 [
   {
     "name": "ghosted-bar",
-    "version": "0.1.0-1",
+    "version": "0.1.0-3",
     "description": "Modern, high-performance Wayland status bar and Control Center for Ghosted Arch",
     "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
-    "size": "11 MB",
+    "size": "14 MB",
     "license": "GPL-3.0",
     "dependencies": ["wayland"],
-    "filename": "ghosted-bar-0.1.0-1-x86_64.pkg.tar.zst"
+    "filename": "ghosted-bar-0.1.0-3-x86_64.pkg.tar.zst"
   }
 ,
   {
     "name": "ghosted-compositor",
-    "version": "0.1.0-2",
+    "version": "0.1.0-4",
     "description": "Native, high-performance Wayland compositor for GhostedLand",
     "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
-    "size": "6 MB",
+    "size": "9 MB",
     "license": "GPL-3.0",
     "dependencies": ["wayland"],
-    "filename": "ghosted-compositor-0.1.0-2-x86_64.pkg.tar.zst"
+    "filename": "ghosted-compositor-0.1.0-4-x86_64.pkg.tar.zst"
   }
 ,
   {
     "name": "ghosted-greeter",
-    "version": "0.1.0-1",
+    "version": "0.1.0-2",
     "description": "Modern, hardware-accelerated Qt6/QML & Rust graphical login manager for greetd",
     "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
     "size": "4 MB",
     "license": "GPL-3.0",
     "dependencies": ["greetd"],
-    "filename": "ghosted-greeter-0.1.0-1-x86_64.pkg.tar.zst"
+    "filename": "ghosted-greeter-0.1.0-2-x86_64.pkg.tar.zst"
   }
 ,
   {
     "name": "ghosted-settings",
-    "version": "0.1.0-1",
+    "version": "0.1.0-3",
     "description": "GTK4 and libadwaita desktop settings application for Ghosted Arch",
     "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
-    "size": "24 MB",
+    "size": "25 MB",
     "license": "GPL-3.0",
     "dependencies": ["gtk4"],
-    "filename": "ghosted-settings-0.1.0-1-x86_64.pkg.tar.zst"
+    "filename": "ghosted-settings-0.1.0-3-x86_64.pkg.tar.zst"
   }
 ,
   {
     "name": "ghosted-wallpaper",
-    "version": "0.1.0-1",
+    "version": "0.1.0-3",
     "description": "High-performance Wayland multi-output wallpaper daemon for Ghosted Arch",
     "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
-    "size": "3 MB",
+    "size": "4 MB",
     "license": "GPL-3.0",
     "dependencies": ["wayland"],
-    "filename": "ghosted-wallpaper-0.1.0-1-x86_64.pkg.tar.zst"
+    "filename": "ghosted-wallpaper-0.1.0-3-x86_64.pkg.tar.zst"
   }
 ,
   {
@@ -100,24 +100,24 @@
 ,
   {
     "name": "ghostedctl",
-    "version": "0.1.0-1",
+    "version": "0.1.0-2",
     "description": "Unified command-line interface and diagnostic tool for Ghosted Arch",
     "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
     "size": "3 MB",
     "license": "GPL-3.0",
     "dependencies": ["glibc"],
-    "filename": "ghostedctl-0.1.0-1-x86_64.pkg.tar.zst"
+    "filename": "ghostedctl-0.1.0-2-x86_64.pkg.tar.zst"
   }
 ,
   {
     "name": "ghostedland",
-    "version": "0.1.0-2",
+    "version": "0.1.0-5",
     "description": "GhostedLand — Complete Unified Wayland Desktop Platform for Ghosted Arch",
     "url": "https://github.com/BishalPoudel-1/ghostedarch-tools",
-    "size": "0 KB",
+    "size": "9 MB",
     "license": "GPL-3.0",
     "dependencies": ["ghosted-compositor"],
-    "filename": "ghostedland-0.1.0-2-any.pkg.tar.zst"
+    "filename": "ghostedland-0.1.0-5-any.pkg.tar.zst"
   }
 ,
   {
